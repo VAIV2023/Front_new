@@ -1,0 +1,2 @@
+export const AuthKEY = 'zFJaw1k120LiyeaqmO3DPwsq8+E+74HLxY1J8R6rlwmXaS983ciQIuthO3r1EzF1cO8Pdf7mQNrl0IBehKwmOw==';
+export const EndPoint ='https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo';

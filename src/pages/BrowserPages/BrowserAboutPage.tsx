@@ -3,7 +3,7 @@ import Navigator from '../../components/Navigator';
 
 const BrowserAboutContainer = styled.div`
     height:100%;
-    padding-top: 12vh;
+    padding-top: 8vh;
 `
 
 

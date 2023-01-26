@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 import Navigator from '../../components/Navigator';
 import titlebackground from '../../assets/images/title_background.png';
+import axios from 'axios';
+import { AuthKEY, EndPoint } from '../../data/KRX';
 
 //import axios from 'axios';
 
 const BrowserMainContainer = styled.div`
     height:100%;
-    padding-top: 12vh;
+    padding-top: 8vh;
 `
 
 const BrowserMainIntroContainer = styled.div`
@@ -15,10 +17,10 @@ const BrowserMainIntroContainer = styled.div`
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 60vh;
+    height: 50vh;
     background-image: url(${titlebackground});
     background-repeat: no-repeat;
-    background-size: 100% 60vh;
+    background-size: 100% 50vh;
 `
 interface IText{
     FontSize: string;
@@ -60,8 +62,11 @@ const BrowserKosdakNumInfo = styled.div`
     width: 10vw;
 `
 //------------Main Page Section 1
+
+
 interface ISection{
     Color?: string;
+    Height?: string;
 }
 const BrowserMainSectionContainer = styled.div<ISection>`
     display:flex;
@@ -69,8 +74,24 @@ const BrowserMainSectionContainer = styled.div<ISection>`
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 60vh;
+    height: ${(props) => props.Height};
+    background-color: white;
 `
+//------------Main Page Section 2
+
+
+
+axios.get(EndPoint, {
+        params: {
+            serviceKey: `${AuthKEY}`,
+            numOfRows: '1',
+            pageNo: '1',
+            resultType: 'json',
+            itmsNm: '삼성전자'
+        },
+    }).then((res) => console.log(res.data.response.body.items.item[0])
+    );
+
 
 
 
@@ -83,7 +104,7 @@ function BrowserMainPage(){
             <BrowserMainContainer>
                 <BrowserMainIntroContainer>
                     <BrowserTextBox FontSize='2.2rem' FontColor='' Width= '60vw' Height = '10vh' Isbold = {true} Align ={true}>연 50%의 수익률을 보장하는 로보어드바이저</BrowserTextBox>
-                    <BrowserTextBox FontSize='1rem' FontColor='#555555f0' Width= '45vw' Height = '8vh' Isbold = {false} Align ={false}>커스터마이징 가능하고 자동화된 시스템으로 편리한 사용환경을 제공합니다</BrowserTextBox>
+                    <BrowserTextBox FontSize='1rem' FontColor='#555555f0' Width= '45vw' Height = '8vh' Isbold = {false} Align ={false}>자동화된 시스템으로 편리한 사용환경을 제공합니다</BrowserTextBox>
                     <BrowserStockNumInfo>
                         <BrowserKospiNumInfo>
                             <BrowserTextBox FontSize='2rem' FontColor='blue' Width= '10vw' Height = '9vh' Isbold = {true} Align ={true}>968</BrowserTextBox>
@@ -95,7 +116,8 @@ function BrowserMainPage(){
                         </BrowserKosdakNumInfo>
                     </BrowserStockNumInfo>
                 </BrowserMainIntroContainer>
-                <BrowserMainSectionContainer Color = "#6495ED"></BrowserMainSectionContainer>
+                <BrowserMainSectionContainer Color = "#6495ED" Height='50vh'>오늘의 픽</BrowserMainSectionContainer>
+
             </BrowserMainContainer>
         </>
         

@@ -8,7 +8,7 @@ const NavigatorContainer = styled.div`
     flex-direction: row;
     background-color: aliceblue;
     width: 100%;
-    height: 12vh;
+    height: 8vh;
     align-items: center;
 `
 const NavigatorImageContainer = styled.div`
@@ -16,15 +16,15 @@ const NavigatorImageContainer = styled.div`
     justify-content: center;
     align-items: center;
     width: 20vw;
-    height: 12vh;
+    height: 8vh;
 `
 const NavigatorLogo = styled.div`
     display:flex;
     background-image: url(${skkulogo});
     background-repeat : no-repeat;
-    background-size: 14vw 6vh;
-    width: 14vw;
-    height: 6vh;
+    background-size: 10vw 5vh;
+    width: 10vw;
+    height: 5vh;
     cursor: pointer;
 `
 
@@ -37,7 +37,21 @@ const NavigatorLinkBox = styled.div<ILinkBox>`
     align-items: center;
     font-size: 1rem;
     width: ${(props) => props.Width};
-    height: 10vh;
+    height: 8vh;
+    color: #2828297a;
+    cursor: pointer;
+`
+
+const NavigatorLoginBox = styled.div<ILinkBox>`
+    display:flex;
+    position: absolute;
+    right: 5vw;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    width: ${(props) => props.Width};
+    height: 8vh;
+    color: #2828297a;
     cursor: pointer;
 `
 
@@ -57,6 +71,9 @@ function Navigator(){
         if(index === 3){
             navigate("/portpolio");
         }
+        if(index === 4){
+            navigate("/login");
+        }
     }
 
     
@@ -68,6 +85,7 @@ function Navigator(){
             <NavigatorLinkBox Width = '8vw' onClick = {() => handleNavigatorClick(1)}>사용방법</NavigatorLinkBox>
             <NavigatorLinkBox Width = '8vw' onClick = {() => handleNavigatorClick(2)}>오늘의 종목</NavigatorLinkBox>
             <NavigatorLinkBox Width = '8vw' onClick = {() => handleNavigatorClick(3)}>포트폴리오</NavigatorLinkBox>
+            <NavigatorLoginBox Width = '8vw' onClick = {() => handleNavigatorClick(4)}>로그인</NavigatorLoginBox>
         </NavigatorContainer>
     );
 }
