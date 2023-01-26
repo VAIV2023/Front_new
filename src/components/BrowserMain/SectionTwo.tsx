@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import SectionImg2 from '../../assets/images/SectionImg.png';
 
 interface ISection{
     Color?: string;
@@ -14,10 +13,6 @@ const SectionContainer = styled.div<ISection>`
     width: 100%;
     height: ${(props) => props.Height};
     background-color: white;
-    /* background-image: url(${SectionImg2});
-    background-repeat: no-repeat;
-    background-size: 105% 60vh; */
-
 `
 
 
@@ -156,7 +151,7 @@ function BrowserMainsectionTwo(){
                     </ButtonWrapper>
                 </SectionStockPick>
                 <SectionStockPick Width = '35%'>
-                    <BrowserTextBox Width = '80%' Height='10vh' FontSize = "1.5rem" FontWeight = "bold" FontColor="#374054"  Justify='left' Border = {false}>KOSPI 오늘의 종목</BrowserTextBox>
+                    <BrowserTextBox Width = '80%' Height='9vh' FontSize = "1.5rem" FontWeight = "bold" FontColor="#374054"  Justify='left' Border = {false}>KOSPI 오늘의 종목</BrowserTextBox>
                     {kospiarr.map((element) =>(
                         <BrowserTextBoxWrapper Width ='100%'>
                             <BrowserTextBox Width = '30%' Height='6vh' FontSize = "" FontWeight = "bold" FontColor=""  Justify='left' Border = {true}>{element.name}</BrowserTextBox>
@@ -167,7 +162,7 @@ function BrowserMainsectionTwo(){
                     ))}
                 </SectionStockPick>
                 <SectionStockPick Width = '35%'>
-                    <BrowserTextBox Width = '80%' Height='10vh' FontSize = "1.5rem" FontWeight = "bold" FontColor="#374054"  Justify='left' Border = {false}>KOSDAK 오늘의 종목</BrowserTextBox>
+                    <BrowserTextBox Width = '80%' Height='9vh' FontSize = "1.5rem" FontWeight = "bold" FontColor="#374054"  Justify='left' Border = {false}>KOSDAK 오늘의 종목</BrowserTextBox>
                     {kosdakarr.map((element) =>(
                         <BrowserTextBoxWrapper Width ='100%'>
                             <BrowserTextBox Width = '30%' Height='6vh' FontSize = "" FontWeight = "bold" FontColor=""  Justify='left' Border = {true}>{element.name}</BrowserTextBox>

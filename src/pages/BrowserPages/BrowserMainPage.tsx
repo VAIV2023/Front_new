@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import Navigator from '../../components/Navigator';
 import SectionImg2 from '../../assets/images/SectionImg3.png';
-import BrowserMainsectionTwo from '../../components/BrowserMain/SectionTwo';
+import BrowserMainSectionTwo from '../../components/BrowserMain/SectionTwo';
+import BrowserMainSectionThree from '../../components/BrowserMain/SectionThree';
+import BrowserMainsectionFour from '../../components/BrowserMain/SectionFour';
+
 import axios from 'axios';
 import { AuthKEY, EndPoint } from '../../data/KRX';
 
@@ -119,7 +122,10 @@ function BrowserMainPage(){
                         </BrowserKosdakNumInfo>
                     </BrowserStockNumInfo>
                 </BrowserMainIntroContainer>
-                <BrowserMainsectionTwo/>
+                <BrowserMainSectionTwo/>
+                <BrowserMainSectionThree/>
+                <BrowserMainsectionFour/>
+                
 
             </BrowserMainContainer>
         </>

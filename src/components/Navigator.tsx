@@ -12,6 +12,7 @@ const NavigatorContainer = styled.div`
     align-items: center;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
     z-index: 2;
+    opacity: 0.7;
 `
 const NavigatorImageContainer = styled.div`
     display: flex;
