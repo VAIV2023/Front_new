@@ -10,6 +10,8 @@ const NavigatorContainer = styled.div`
     width: 100%;
     height: 8vh;
     align-items: center;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+    z-index: 2;
 `
 const NavigatorImageContainer = styled.div`
     display: flex;
@@ -36,10 +38,15 @@ const NavigatorLinkBox = styled.div<ILinkBox>`
     justify-content: center;
     align-items: center;
     font-size: 1rem;
+    font-weight: bold;
     width: ${(props) => props.Width};
     height: 8vh;
     color: #2828297a;
     cursor: pointer;
+
+    &:hover {
+        color : #374054;
+    }
 `
 
 const NavigatorLoginBox = styled.div<ILinkBox>`
@@ -49,10 +56,15 @@ const NavigatorLoginBox = styled.div<ILinkBox>`
     justify-content: center;
     align-items: center;
     font-size: 1rem;
+    font-weight: bold;
     width: ${(props) => props.Width};
     height: 8vh;
     color: #2828297a;
     cursor: pointer;
+
+    &:hover {
+        color : #374054;
+    }
 `
 
 function Navigator(){

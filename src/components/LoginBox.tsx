@@ -5,8 +5,6 @@ import skku_logo from "../assets/images/skku_logo.png";
 import vaiv_logo from "../assets/images/vaiv_logo.png";
 import { useState } from "react";
 import {
-  SellStockType,
-  HoldingStockType,
   AccountType,
   AccountJSON,
 } from "../types/user_info";
