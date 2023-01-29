@@ -9,7 +9,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const BrowserBackTestContainer = styled.div`
     padding-top: 8vh;
-
+    background-color: aliceblue;
 `
 
 const BrowserBackTestImgContainer = styled.div`

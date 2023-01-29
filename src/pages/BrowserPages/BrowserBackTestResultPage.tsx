@@ -4,6 +4,7 @@ import Navigator from '../../components/Navigator';
 const BrowserBackTestResultContainer = styled.div`
     display: flex;
     padding-top: 8vh;
+    background-color: aliceblue;
 `
 
 
