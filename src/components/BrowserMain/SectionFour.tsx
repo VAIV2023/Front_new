@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -106,6 +107,18 @@ const SectionButton = styled.button<IBotton>`
 `
 
 function BrowserMainsectionFour(){
+    const navigate = useNavigate();
+
+    function handleClick(index: number){
+        if(index === 0){
+            navigate("/about");
+        }
+        if(index === 1){
+            navigate("/portpolio");
+        }
+
+    }
+
     return(
         <SectionContainer>
             <SectionWrapper>
@@ -128,8 +141,8 @@ function BrowserMainsectionFour(){
                     </SectionInfoComponent>
                 </SectionInfoWrapper>
                 <ButtonWrapper>
-                    <SectionButton MarginR = "5%" Color ="#63A0FF">사용 방법</SectionButton>
-                    <SectionButton MarginL = "5%" Color = "#093687">포트폴리오</SectionButton>
+                    <SectionButton MarginR = "5%" Color ="#63A0FF" onClick={()=> handleClick(0)}>사용 방법</SectionButton>
+                    <SectionButton MarginL = "5%" Color = "#093687" onClick={()=> handleClick(1)}>포트폴리오</SectionButton>
                 </ButtonWrapper>
             </SectionWrapper>
         </SectionContainer>

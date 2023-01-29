@@ -7,6 +7,9 @@ const BrowserPortpolioContainer = styled.div`
 `
 
 function BrowserPortpolioPage(){
+ 
+
+
     return(
         <>
             <Navigator/>

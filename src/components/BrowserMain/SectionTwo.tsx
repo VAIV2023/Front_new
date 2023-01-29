@@ -147,7 +147,7 @@ function BrowserMainsectionTwo(){
                     <BrowserTextBox Width = '100%' Height='10vh' FontSize = "" FontWeight = "bold" FontColor=""  Justify='left' Border = {false}></BrowserTextBox>
                     <TextBox>검증된 AI가 추천하는 <br/>오늘의 종목을 확인하세요!</TextBox>
                     <ButtonWrapper>
-                        <TodaysPickButton onClick ={handleClickbutton}>오늘의 종목</TodaysPickButton>
+                        <TodaysPickButton onClick ={handleClickbutton}>더 알아보기</TodaysPickButton>
                     </ButtonWrapper>
                 </SectionStockPick>
                 <SectionStockPick Width = '35%'>

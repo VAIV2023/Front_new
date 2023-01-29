@@ -11,6 +11,28 @@ const SectionContainer = styled.div`
 `
 
 
+interface IText{
+    FontSize: string;
+    FontColor: string;
+    Width: string;
+    Height: string;
+    Isbold: boolean;
+    Align: boolean;
+}
+
+const BrowserTextBox = styled.div<IText>`
+    display:flex;
+    width:${(props) => props.Width};
+    height:${(props) => props.Height};
+    font-size: ${(props) => props.FontSize};
+    font-weight: ${(props) => props.Isbold ? "bold" : ""};
+    color: ${(props) => props.FontColor};
+    justify-content: center;
+    align-items: ${(props) => props.Align ? "center" : ""};
+`
+
+
+
 
 function BrowserMainsectionFive(){
     return(

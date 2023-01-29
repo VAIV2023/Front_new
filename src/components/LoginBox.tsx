@@ -4,6 +4,8 @@ import btn_login_kakao from "../assets/images/btn_login_kakao.png";
 import skku_logo from "../assets/images/skku_logo.png";
 import vaiv_logo from "../assets/images/vaiv_logo.png";
 import { useState } from "react";
+import { useRecoilState} from "recoil";
+import { isLoggedInState } from "../atoms/LoginAtom";
 import {
   AccountType,
   AccountJSON,
@@ -60,6 +62,7 @@ const KakaoImageContainer = styled.div<IKakaoImageContainer>`
 `;
 
 function LoginBox() {
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
   const [isOnMouse, setIsOnMouse] = useState(false);
   const navigate = useNavigate();
 
@@ -153,6 +156,7 @@ function LoginBox() {
         window.Kakao.API.request({
           url: "/v2/user/me",
           success(res: any) {
+            setIsLoggedIn(true);
             console.log(res);
             console.log(res.kakao_account);
             console.log(res.kakao_account.email);
