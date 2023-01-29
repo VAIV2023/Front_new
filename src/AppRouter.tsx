@@ -9,7 +9,7 @@ import BrowserTodaystockPage from "./pages/BrowserPages/BrowserTodaystockPage";
 import BrowserPortpolioPage from "./pages/BrowserPages/BrowserPortpolioPage";
 import BrowserLoginPage from "./pages/BrowserPages/BrowserLoginPage";
 import BrowserBackTestPage from "./pages/BrowserPages/BrowserBackTestPage";
-
+import BrowserBackTestResultPage from "./pages/BrowserPages/BrowserBackTestResultPage";
 /*Tablet Pages*/
 import MobileMainPage from "./pages/MobilePages/MobileMainPage";
 
@@ -30,12 +30,10 @@ function AppRouter() {
           <Route path="/" element={<BrowserMainPage/>} />
           <Route path="/about" element={<BrowserAboutPage/>} />
           <Route path="/todaystock" element={<BrowserTodaystockPage/>} />
-
-          <Route path="/backtest" element={<BrowserBackTestPage/>} />
+          <Route path="/backtest" element={<BrowserBackTestPage/>}/>
+          <Route path="/result" element={<BrowserBackTestResultPage />} />
           <Route path="/portpolio" element={isLoggedIn ? <BrowserPortpolioPage/> : <Navigate replace to="/" />} />
-
-          <Route path="/login" element={isLoggedIn ? <Navigate replace to="/" /> : <BrowserLoginPage/>} 
-          />
+          <Route path="/login" element={isLoggedIn ? <Navigate replace to="/" /> : <BrowserLoginPage/>} />
         </Routes>
       )
     }
