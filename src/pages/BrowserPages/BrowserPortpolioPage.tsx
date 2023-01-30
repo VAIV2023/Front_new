@@ -28,6 +28,9 @@ const Title = styled.p`
 `
 
 function BrowserPortpolioPage(){
+ 
+
+
     return(
         <>
             <Navigator/>

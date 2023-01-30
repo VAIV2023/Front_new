@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import Navigator from '../../components/Navigator';
-import titlebackground from '../../assets/images/title_background.png';
+import SectionImg2 from '../../assets/images/SectionImg3.png';
+import BrowserMainSectionTwo from '../../components/BrowserMain/SectionTwo';
+import BrowserMainSectionThree from '../../components/BrowserMain/SectionThree';
+import BrowserMainsectionFour from '../../components/BrowserMain/SectionFour';
+
 import axios from 'axios';
 import { AuthKEY, EndPoint } from '../../data/KRX';
 
@@ -9,6 +13,7 @@ import { AuthKEY, EndPoint } from '../../data/KRX';
 const BrowserMainContainer = styled.div`
     height:100%;
     padding-top: 8vh;
+    background-color: aliceblue;
 `
 
 const BrowserMainIntroContainer = styled.div`
@@ -17,10 +22,24 @@ const BrowserMainIntroContainer = styled.div`
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 50vh;
-    background-image: url(${titlebackground});
-    background-repeat: no-repeat;
-    background-size: 100% 50vh;
+    height: 60vh;
+    z-index: 1;
+    position: relative;
+
+    &::after {
+        content:'';
+        width: 100%;
+        height: 60vh;
+        background-image: url(${SectionImg2});
+        background-repeat: no-repeat;
+        background-size: 100% 60vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        opacity: 0.4;
+    }
+
 `
 interface IText{
     FontSize: string;
@@ -64,20 +83,8 @@ const BrowserKosdakNumInfo = styled.div`
 //------------Main Page Section 1
 
 
-interface ISection{
-    Color?: string;
-    Height?: string;
-}
-const BrowserMainSectionContainer = styled.div<ISection>`
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: ${(props) => props.Height};
-    background-color: white;
-`
-//------------Main Page Section 2
+
+
 
 
 
@@ -104,7 +111,7 @@ function BrowserMainPage(){
             <BrowserMainContainer>
                 <BrowserMainIntroContainer>
                     <BrowserTextBox FontSize='2.2rem' FontColor='' Width= '60vw' Height = '10vh' Isbold = {true} Align ={true}>연 50%의 수익률을 보장하는 로보어드바이저</BrowserTextBox>
-                    <BrowserTextBox FontSize='1rem' FontColor='#555555f0' Width= '45vw' Height = '8vh' Isbold = {false} Align ={false}>자동화된 시스템으로 편리한 사용환경을 제공합니다</BrowserTextBox>
+                    <BrowserTextBox FontSize='1rem' FontColor='#555555f0' Width= '45vw' Height = '8vh' Isbold = {true} Align ={false}>자동화된 시스템으로 편리한 사용환경을 제공합니다</BrowserTextBox>
                     <BrowserStockNumInfo>
                         <BrowserKospiNumInfo>
                             <BrowserTextBox FontSize='2rem' FontColor='blue' Width= '10vw' Height = '9vh' Isbold = {true} Align ={true}>968</BrowserTextBox>
@@ -116,7 +123,10 @@ function BrowserMainPage(){
                         </BrowserKosdakNumInfo>
                     </BrowserStockNumInfo>
                 </BrowserMainIntroContainer>
-                <BrowserMainSectionContainer Color = "#6495ED" Height='50vh'>오늘의 픽</BrowserMainSectionContainer>
+                <BrowserMainSectionTwo/>
+                <BrowserMainSectionThree/>
+                <BrowserMainsectionFour/>
+                
 
             </BrowserMainContainer>
         </>
