@@ -4,6 +4,8 @@ import Navigator from '../../components/Navigator';
 // import {useTable} from 'react-table';
 import { PaginationTable } from '../../components/PaginationTable'
 import {useEffect, useState} from 'react';
+import { isClicked } from '../../atoms/ButtonAtom';
+import { useRecoilState } from 'recoil';
 
 const BrowserTodaystockContainer = styled.div`
     height:100%;
@@ -86,25 +88,15 @@ const StockContainer = styled.div`
 const RightSide = styled.div`
     width: 35vw;
     margin-right: 1rem;
+    margin-top: 10vh;
 `
 
 // const currentTime = new Date(+new Date() + 3240 * 10000).toISOString().replace("T", " ").replace(/\..*/,'')
 const current = new Date();
 const date = `${current.getFullYear()}/${current.getMonth()+1}/${current.getDate()}`;
 
-function ImageRendering(){
-    // const RightSide = styled.div`
-    //     width: 35vw;
-    //     margin-right: 1rem;
-    // `
-
-    if(clickedButton)
-    
-    return (<RightSide>image to be updated...</RightSide>)
-    
-}
-
 function BrowserTodaystockPage(){
+    const [isClick, setIsClick] = useRecoilState(isClicked);
     return(
         <>
             <Navigator/>
@@ -112,30 +104,29 @@ function BrowserTodaystockPage(){
                 <BuyCommentContainer>
                     <BuyComment>Today({date})'s Top Pick</BuyComment>
                 </BuyCommentContainer>
-                <ButtonContainer>
-                    {/* <KosButton onClick={() => setCheck(true)}>KOSPI</KosButton> */}
-                    {/* <KosButton onClick={() => setCheck(false)}>KOSDAQ</KosButton> */}
-                    {/* <MarketChoice>Market Select:</MarketChoice> */}
-                    <KosButton>KOSPI</KosButton>
-                    
-                </ButtonContainer>
-                <StockContainer>
-                    <PaginationTable></PaginationTable>
-                    <ImageRendering>
-
-                    </ImageRendering>
-                    
-                </StockContainer>
                 
-                <ButtonContainer>
-                    <KosButton>KOSDAQ</KosButton>
-                </ButtonContainer>
-
                 <StockContainer>
-                    <PaginationTable></PaginationTable>
-                    <RightSide>image TBD...</RightSide>
-                </StockContainer>
-                
+                    <div>
+                        <ButtonContainer>
+                            {/* <KosButton onClick={() => setCheck(true)}>KOSPI</KosButton> */}
+                            {/* <KosButton onClick={() => setCheck(false)}>KOSDAQ</KosButton> */}
+                            {/* <MarketChoice>Market Select:</MarketChoice> */}
+                            <KosButton>KOSPI</KosButton>
+                        </ButtonContainer>
+                        <PaginationTable></PaginationTable>
+                        <ButtonContainer>
+                            <KosButton>KOSDAQ</KosButton>
+                        </ButtonContainer>
+                        <PaginationTable></PaginationTable>
+                    </div>
+                    
+                    {isClick?(
+                        <RightSide>image to be updated...</RightSide>
+                    ):(
+                        <RightSide>Nah...</RightSide>
+                    )}
+
+                </StockContainer>     
             </BrowserTodaystockContainer>
         </>
     );

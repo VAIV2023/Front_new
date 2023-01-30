@@ -4,6 +4,8 @@ import { COLUMNS } from './columns'
 import { usePagination, useTable } from 'react-table'
 import './table.css'
 import styled from 'styled-components';
+import { useRecoilState} from "recoil";
+import {isClicked} from "../atoms/ButtonAtom";
 
 const Button = styled.button`
     display: inline-flex;
@@ -36,18 +38,10 @@ const Button = styled.button`
     }
 `
 
-export interface GlobalStateInterface {
-    isClicked: Boolean;
-}
-
-const GlobalStateContext = createContext({
-    state: {} as Partial<GlobalStateInterface>,
-    setState:{} as 
-})
-
 export const PaginationTable = () => {
     const columns = useMemo(() => COLUMNS, [])
     const data = useMemo(() => MOCK_DATA, [])
+    const [isClick, setIsClick] = useRecoilState(isClicked);
 
     const { 
         getTableProps, 
@@ -78,12 +72,10 @@ export const PaginationTable = () => {
         event.preventDefault();
 
         const button: HTMLButtonElement = event.currentTarget;
-        setClickedButton(true);
+        setIsClick(true);
 
         alert('Button Clicked')
     };
-
-    // const { pageIndex, pageSize } = state
 
     return (
         <div className="table">
@@ -97,7 +89,6 @@ export const PaginationTable = () => {
                                 </th>
                             ))}
                             {<th>More</th>}
-                            {/* {<th>Buy Button</th>} */}
                         </tr>
                     ))}
                 </thead>
@@ -109,61 +100,18 @@ export const PaginationTable = () => {
                             <tr {...row.getRowProps()}>
                                 {row.cells.map((cell: any) => {
                                     return (
-                                        // <button value={cell.accessor} o}></button>
                                         <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                                         
                                     );
                                 })}
-                                {/* {<td><Button onClick={buttonImageHandler}>Candlestick Chart</Button></td>} */}
                                 {<td><Button onClick={buttonHandler}>More information or BUY</Button></td>}
                             </tr>
                         );
                     })}
                 </tbody>
             </table>
-
-            {/* <div className="table-pagination" style={{margin: '5px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-                    {'<<'}
-                </button>
-                <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-                    Previous
-                </button>
-                <span>
-                    <strong style={{display: 'block', width: '100px', textAlign: 'center'}}>
-                        {pageIndex + 1} / {pageOptions.length} 
-                    </strong>
-                </span>
-                <span>
-                    Go to page: {' '}
-                    <input type="number" defaultValue={pageIndex + 1}
-                    onChange={(e) => {
-                        const pageNumber = e.target.value ? Number(e.target.value) - 1 : 0 
-                        gotoPage(pageNumber)
-                    }} 
-                    style={{width: '50px'}} />
-                </span>
-                <button onClick={() => nextPage()} disabled={!canNextPage}>
-                    Next
-                </button>
-                <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-                    {'>>'}
-                </button>
-            </div>
-            <div className="table-pagesize" style={{margin: '5px', display: 'flex', justifyContent: 'flex-end', alignItems: 'center'}}>
-                <select value={pageSize} onChange={(e) => setPageSize(Number(e.target.value))}>
-                    {
-                        [10, 25, 50].map(pageSize => (
-                            <option key={pageSize} value={pageSize}>
-                                {pageSize}개 씩 보기
-                            </option>
-                        ))
-                    }
-                </select>
-            </div> */}
         </div>
     );
 }
 
 export default PaginationTable;
-export const useAuth = () => useContext()
