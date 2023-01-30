@@ -1,0 +1,8 @@
+[
+    {"N":1,"Stock_Name":"삼성전자","Present_Price":"63,900","Day_to_day_ratio":"+500","Fluctuation_rate":"+0.79%", "Confidence_score":"80%"},
+    {"N":2,"Stock_Name":"삼성바이오로직스","Present_Price":"795,000","Day_to_day_ratio":"-3,000","Fluctuation_rate":"-0.38%", "Confidence_score":"70%"},
+    {"N":3,"Stock_Name":"삼성전자우","Present_Price":"57,600","Day_to_day_ratio":"+800","Fluctuation_rate":"+1.41%", "Confidence_score":"60%"},
+    {"N":4,"Stock_Name":"삼성SDI","Present_Price":"672,000","Day_to_day_ratio":"+23,000","Fluctuation_rate":"+3.54%", "Confidence_score":"50%"},
+    {"N":5,"Stock_Name":"삼성물산","Present_Price":"119,700","Day_to_day_ratio":"+900","Fluctuation_rate":"+0.76%", "Confidence_score":"40%"},
+    {"N":6,"Stock_Name":"삼성생명","Present_Price":"72,600","Day_to_day_ratio":"+1,300","Fluctuation_rate":"+1.82%", "Confidence_score":"30%"}
+]

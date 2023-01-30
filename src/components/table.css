@@ -1,0 +1,28 @@
+.table {
+    margin: 1vw 2vw 1vw 2vw;
+}
+table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 60vw;
+    font-size: 12px;
+}
+table td, table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    /* color: if($props[0]=='+', 'red', 'blue') */
+    color: if(props[0]=='+' ? 'red' : 'blue')
+}
+table tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+table tr:hover {
+    background-color: #ddd;
+}
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+}

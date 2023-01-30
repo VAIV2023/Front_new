@@ -13,8 +13,8 @@ import BrowserBackTestResultPage from "./pages/BrowserPages/BrowserBackTestResul
 /*Tablet Pages*/
 import MobileMainPage from "./pages/MobilePages/MobileMainPage";
 
-
 import { isLoggedInState } from "./atoms/LoginAtom";
+import {isClicked} from "./atoms/ButtonAtom";
 
 
 
@@ -22,6 +22,7 @@ import { isLoggedInState } from "./atoms/LoginAtom";
 
 function AppRouter() {
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
+  const [isClick, setIsClick] = useRecoilState(isClicked);
 
   const renderItems = () => {
     if(isBrowser) {
