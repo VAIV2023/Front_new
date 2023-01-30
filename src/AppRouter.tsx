@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { isBrowser } from 'react-device-detect';
-import { useRecoilState} from "recoil";
+import { useRecoilState } from "recoil";
 
 /*Browser Pages*/
 import BrowserMainPage from "./pages/BrowserPages/BrowserMainPage";

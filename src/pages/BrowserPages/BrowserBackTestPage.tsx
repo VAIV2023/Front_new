@@ -303,7 +303,7 @@ function BrowserBackTestPage(){
                     <SelectBox Width='60%' Height='20vh'>
                         <SelectBoxTop Color ="#E1F1F8">매도 가격 기준</SelectBoxTop>
                         <SelectBoxBottom>
-                            <BrowserTextBox Width='15%' Height='' FontSize='1rem' FontColor='' Isbold={false} Justify="left" Left=' '>전일종가</BrowserTextBox>
+                            <BrowserTextBox Width='17%' Height='' FontSize='1rem' FontColor='' Isbold={false} Justify="left" Right='1%'>전일종가</BrowserTextBox>
                             <InputField min="0" max="100" placeholder="0" type= 'Number' onChange={handleChangeSellRatio} maxLength={2}></InputField>
                             <BrowserTextBox Width='10%' Height='' FontSize='1rem' FontColor='' Isbold={false} Justify="center" Left=' '>%</BrowserTextBox>
                         </SelectBoxBottom>
