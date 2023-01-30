@@ -6,6 +6,7 @@ import { PaginationTable } from '../../components/PaginationTable'
 import {useEffect, useState} from 'react';
 import { isClicked } from '../../atoms/ButtonAtom';
 import { useRecoilState } from 'recoil';
+import samsung from "../../samsung.png"
 
 const BrowserTodaystockContainer = styled.div`
     height:100%;
@@ -87,8 +88,54 @@ const StockContainer = styled.div`
 
 const RightSide = styled.div`
     width: 35vw;
-    margin-right: 1rem;
+    padding-right: 1rem;
     margin-top: 10vh;
+`
+
+const ImageContainer  = styled.img`
+    height: auto;
+    max-width: 100%;
+`
+
+const SelectBoxBottom =styled.div`
+    display: flex;
+    width: 100%;
+    height: 70%;
+    align-items: center;
+    justify-content: center;
+`
+
+const InputField = styled.input`
+    display: flex;
+    width: 20%;
+    height: 30%;
+    text-align: right;
+`;
+
+interface IText{
+    FontSize: string;
+    FontColor: string;
+    Width: string;
+    Height: string;
+    Justify?: string;
+    Align?: string;
+    Left?: string;
+    Right?:string;
+    Isbold: boolean;
+    
+}
+
+const BrowserTextBox = styled.div<IText>`
+    display:flex;
+    width:${(props) => props.Width};
+    height:${(props) => props.Height};
+    font-size: ${(props) => props.FontSize};
+    font-weight: ${(props) => props.Isbold ? "bold" : ""};
+    color: ${(props) => props.FontColor};
+    justify-content: ${(props) => props.Justify};
+    align-items: ${(props) => props.Align};
+    padding-left:${(props) => props.Left};
+    padding-right:${(props) => props.Right};
 `
 
 // const currentTime = new Date(+new Date() + 3240 * 10000).toISOString().replace("T", " ").replace(/\..*/,'')
@@ -96,7 +143,22 @@ const current = new Date();
 const date = `${current.getFullYear()}/${current.getMonth()+1}/${current.getDate()}`;
 
 function BrowserTodaystockPage(){
+    const [numOfStock, setnumOfStock] = useState<Number>(0);
     const [isClick, setIsClick] = useRecoilState(isClicked);
+    
+    const handleChangeNumOfStock = (e : any) => {
+        const { value } = e.target;
+        const onlyNumber = value.replace(/[^0-9]/g, '');
+        setnumOfStock(onlyNumber);
+    };
+    
+    const buttonHandler = (event: React.MouseEvent<HTMLButtonElement>)=>{
+        event.preventDefault();
+
+        const button: HTMLButtonElement = event.currentTarget;
+        alert("Purchase completed")
+    };
+
     return(
         <>
             <Navigator/>
@@ -121,7 +183,17 @@ function BrowserTodaystockPage(){
                     </div>
                     
                     {isClick?(
-                        <RightSide>image to be updated...</RightSide>
+                        <RightSide>
+                            <ImageContainer src={samsung}/>
+                            <StockContainer>
+                                <SelectBoxBottom>
+                                    <InputField min="0" max="99" placeholder="0" type= 'Number' onChange={handleChangeNumOfStock} maxLength={2}></InputField>
+                                    <BrowserTextBox Width='15%' Height=' ' FontSize='1rem' FontColor='' Isbold={false} Justify="right" Left=' '>주</BrowserTextBox>
+                                </SelectBoxBottom>
+                                <KosButton onClick={buttonHandler}>BUY</KosButton>
+                            </StockContainer>
+                            
+                        </RightSide>
                     ):(
                         <RightSide>Nah...</RightSide>
                     )}
