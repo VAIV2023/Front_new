@@ -96,11 +96,11 @@ axios.get(EndPoint, {
             resultType: 'json',
             itmsNm: '삼성전자'
         },
-    }).then((res) => console.log(res.data.response.body.items.item[0])
+    }).then(
     );
 
 
-
+    // (res) => console.log(res.data.response.body.items.item[0])
 
 function BrowserMainPage(){
     
