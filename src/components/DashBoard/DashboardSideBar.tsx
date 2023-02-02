@@ -97,7 +97,7 @@ export default function DashboardSidebar({
         <Link
           underline="none"
           component={RouterLink}
-          to={`/`}
+          to={`/portpolio/main`}
         >
           <AccountStyle>
             <Avatar src={account.photoURL} alt="" />

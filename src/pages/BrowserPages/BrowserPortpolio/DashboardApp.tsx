@@ -158,7 +158,7 @@ export default function DashboardApp() {
           <AppWidgetSummary
             title="총 평가"
             total={
-              "1324"
+              '$ 1324'
             } 
             icon={"mdi:account-details"}
           />
@@ -168,7 +168,7 @@ export default function DashboardApp() {
           <AppWidgetSummary
             title="총 손익"
             total={
-              1324
+              '$ 1324'
             } 
             color="info"
             icon={"mdi:arrow-expand"}
@@ -179,7 +179,7 @@ export default function DashboardApp() {
           <AppWidgetSummary
             title="총 매입"
             total={
-              1324
+              '$ 1324'
             } 
             color="warning"
             icon={"icon-park-outline:buy"}
@@ -190,7 +190,7 @@ export default function DashboardApp() {
           <AppWidgetSummary
             title="실현 손익"
             total={
-              "1324"
+              '$ 1324'
             } 
             color="error"
             icon={"mdi:report-bar"}
@@ -198,25 +198,21 @@ export default function DashboardApp() {
         </Grid>
 
         <Grid item xs={12} md={6} lg={12}>
-{/*           <AppWebsiteVisits
-            title="학번 분포"
-            subheader="동아리원들의 학번 분포 그래프"
+          <AppWebsiteVisits
+            title="자산 흐름"
+            subheader="현재 계좌 자산 흐름 그래프"
             chartLabels={
-              clubMembersData
-                ? studentIDExample(clubMembersData)
-                : ["16", "17", "18", "19", "20", "21", "22", "23"]
+              ["Son", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
             } 
              chartData={[
               {
-                name: "학번",
+                name: "총자산",
                 type: "area",
                 fill: "gradient",
-                data: clubMembersData
-                  ? studentIDData(clubMembersData)
-                  : [1, 3, 5, 2, 4, 1, 1],
+                data: [1, 3, 5, 2, 4, 1, 4],
               },
             ]} 
-          /> */}
+          /> 
         </Grid>
 
         <Grid item xs={12} md={6} lg={12}>
@@ -242,7 +238,7 @@ export default function DashboardApp() {
           /> */}
         </Grid>
 
-{/*         {stringColumnsData.size > 0
+{/*          {stringColumnsData.size > 0
           ? Array.from(stringColumnsData).map(([key, value]) => {
               const obj = makeChartData(key, value);
 
@@ -285,27 +281,24 @@ export default function DashboardApp() {
                 </Grid>
               );
             })
-          : null}
-
-        {booleanColumnsData.size > 0
-          ? Array.from(booleanColumnsData).map(([key, value]) => {
-              const obj = makeChartData(key, value);
-
-              return (
-                <Grid key={key} item xs={12} sm={6} md={6}>
-                  <Card>
-                    <CardHeader title={key} />
-                    <Box sx={{ p: 3, pb: 1 }} dir="ltr">
-                      <BooleanColumnChart
-                        series={Object.values(obj)}
-                        labels={Object.keys(obj)}
-                      />
-                    </Box>
-                  </Card>
-                </Grid>
-              );
-            })
           : null} */}
+
+    
+
+             
+        <Grid key={"보유주식 현황"} item xs={12} sm={6} md={6}>
+          <Card>
+            <CardHeader title={"보유주식 현황"} />
+            <Box sx={{ p: 2, pb: 1 }} dir="ltr">
+              <BooleanColumnChart
+                series={[10,20,10,10,10,10,10,10,10,10]}
+                labels={["삼성전자","삼성SDI","삼성물산","삼성바이오로직스","삼성전자(우)","삼성생명","네이버","카카오","토스","우아한형제들"]}
+              />
+            </Box>
+          </Card>
+        </Grid>
+  
+          
       </Grid>
     </Container>
   );
