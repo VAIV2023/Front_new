@@ -89,7 +89,7 @@ function Navigator(){
             navigate("/backtest");
         }
         if(index === 4){
-            navigate("/portpolio");
+            navigate("/portpolio/main");
         }
         if(index === 5){
             navigate("/login");

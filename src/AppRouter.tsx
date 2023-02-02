@@ -10,6 +10,10 @@ import BrowserPortpolioPage from "./pages/BrowserPages/BrowserPortpolioPage";
 import BrowserLoginPage from "./pages/BrowserPages/BrowserLoginPage";
 import BrowserBackTestPage from "./pages/BrowserPages/BrowserBackTestPage";
 import BrowserBackTestResultPage from "./pages/BrowserPages/BrowserBackTestResultPage";
+
+import ClubManagePage from "./pages/BrowserPages/BrowserPortpolio/ClubManagePage";
+import BrowserPortpolioMain from "./pages/BrowserPages/BrowserPortpolio/BrowserPortpolioMain";
+import DashboardApp from "./pages/BrowserPages/BrowserPortpolio/DashboardApp";
 /*Tablet Pages*/
 import MobileMainPage from "./pages/MobilePages/MobileMainPage";
 
@@ -33,16 +37,21 @@ function AppRouter() {
           <Route path="/todaystock" element={<BrowserTodaystockPage/>} />
           <Route path="/backtest" element={<BrowserBackTestPage/>}/>
           <Route path="/result" element={<BrowserBackTestResultPage />} />
-          <Route path="/portpolio" element={isLoggedIn ? <BrowserPortpolioPage/> : <Navigate replace to="/" />} />
+          <Route path="/portpolio" element={isLoggedIn ? <ClubManagePage/> : <Navigate replace to="/" />} >
+            <Route path="main" element={<DashboardApp/>} />
+          </Route>
+          
+            
+          
           <Route path="/login" element={isLoggedIn ? <Navigate replace to="/" /> : <BrowserLoginPage/>} />
         </Routes>
       )
     }
-      return(
+       return(
         <Routes>
           <Route path="/" element={<MobileMainPage/>} />
         </Routes>
-      )
+      ) 
   };
 
 
