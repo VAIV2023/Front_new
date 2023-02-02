@@ -156,44 +156,44 @@ export default function DashboardApp() {
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6} md={3}>
           <AppWidgetSummary
-            title="총 수익"
+            title="총 평가"
             total={
-              1324
+              "1324"
             } 
-            icon={"ic:round-people-alt"}
+            icon={"mdi:account-details"}
           />
         </Grid>
 
         <Grid item xs={12} sm={6} md={3}>
           <AppWidgetSummary
-            title="총 평가"
+            title="총 손익"
             total={
               1324
             } 
             color="info"
-            icon={"material-symbols:accessibility-new"}
+            icon={"mdi:arrow-expand"}
           />
         </Grid>
 
         <Grid item xs={12} sm={6} md={3}>
           <AppWidgetSummary
-            title="총 매도"
+            title="총 매입"
             total={
               1324
             } 
             color="warning"
-            icon={"ri:todo-fill"}
+            icon={"icon-park-outline:buy"}
           />
         </Grid>
 
         <Grid item xs={12} sm={6} md={3}>
           <AppWidgetSummary
-            title="총 매수"
+            title="실현 손익"
             total={
               "1324"
             } 
             color="error"
-            icon={"ri:calendar-todo-fill"}
+            icon={"mdi:report-bar"}
           />
         </Grid>
 

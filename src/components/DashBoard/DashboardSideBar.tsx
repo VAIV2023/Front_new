@@ -90,7 +90,7 @@ export default function DashboardSidebar({
       }}
     >
       <Box sx={{ px: 2.5, py: 3, display: "inline-flex" }}>
-        <Logo to="/">VAIV</Logo>
+        <Logo to="/">SKKUNT</Logo>
       </Box>
 
       <Box sx={{ mb: 5, mx: 2.5 }}>

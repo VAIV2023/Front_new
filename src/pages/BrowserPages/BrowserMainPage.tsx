@@ -85,10 +85,8 @@ const BrowserKosdakNumInfo = styled.div`
 
 
 
-
-
-
-axios.get(EndPoint, {
+const test = () =>{
+    axios.get(EndPoint, {
         params: {
             serviceKey: `${AuthKEY}`,
             numOfRows: '1',
@@ -96,8 +94,10 @@ axios.get(EndPoint, {
             resultType: 'json',
             itmsNm: '삼성전자'
         },
-    }).then((res) => console.log(res.data.response.body.items.item[0])
-    );
+    }).then((res) => res.data.response.body.items.item[0]);   
+}
+
+console.log(test());
 
 
 
