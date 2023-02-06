@@ -83,23 +83,23 @@ interface IBotton{
 
 const SectionButton = styled.button<IBotton>`
     display:flex;
-    background-color: ${(props) => props.Color};
+    background-color: white;
     width: 13%;
     height: 8vh;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: ${(props) => props.Color};
     font-weight: bold;
     font-size: 1.2rem;
     border-radius: 1rem;
-    border: 10px white;
+    border: 2px solid ${(props) => props.Color};
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
     margin-left: ${(props)=> props.MarginL};
     margin-right: ${(props)=> props.MarginR};
 
     &:hover {
-        transform: scale(1.2);
-        transition: transform .5s;
+        color:white;
+        background-color: ${(props) => props.Color};
         cursor: pointer;
     }
 
@@ -124,7 +124,7 @@ function BrowserMainsectionFour(){
             <SectionWrapper>
                 <SectionTitleWrapper>
                     <BrowserTextBox Width='50%' Height='10vh' FontSize='1.5rem' FontColor='' Isbold={false} Justify ="right" Align='center'>"Easy to Use"</BrowserTextBox>
-                    <BrowserTextBox Width='50%' Height='10vh' FontSize='1.5rem' FontColor='#63A0FF' Isbold={true} Justify ="left" Margin = "1vw" Align='center'>SUDOVISOR</BrowserTextBox>
+                    <BrowserTextBox Width='50%' Height='10vh' FontSize='1.5rem' FontColor='#63A0FF' Isbold={true} Justify ="left" Margin = "1vw" Align='center'>SUKKUNT</BrowserTextBox>
                 </SectionTitleWrapper>
                 <SectionInfoWrapper>
                     <SectionInfoComponent>

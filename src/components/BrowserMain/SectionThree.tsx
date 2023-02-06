@@ -6,13 +6,13 @@ import { TbPlugConnected } from "react-icons/tb";
 const SectionContainer = styled.div`
     display:flex;
     flex-direction: column;
-    
+    background-color: white;
     align-items: center;
     width: 100%;
     height: 70vh;
     z-index: 1;
     position: relative;
-    margin-top: 5vh;
+   
 
     &::after {
         content:'';
@@ -75,7 +75,7 @@ const BrowserTextBox = styled.div<IText>`
 function BrowserMainsectionThree(){
     return(
         <SectionContainer>
-            <BrowserTextBox Width="50%" Height='25vh' FontSize='2.5rem' FontColor="white" Isbold={true}  Align ={true}>SUDOVISOR의 비전</BrowserTextBox>
+            <BrowserTextBox Width="50%" Height='25vh' FontSize='2.5rem' FontColor="white" Isbold={true}  Align ={true}>SKKUNT의 비전</BrowserTextBox>
             <SectionWrapper>
                 <SectionIconContainer>
                     <TbSettingsAutomation color='white' size = '70%'></TbSettingsAutomation>

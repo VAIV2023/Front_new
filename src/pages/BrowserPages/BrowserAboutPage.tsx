@@ -4,7 +4,7 @@ import BackGround from '../../assets/images/SectionImg5.png';
 
 const BrowserAboutContainer = styled.div`
     padding-top: 8vh;
-    background-color: aliceblue;
+    background-color: white;
 `
 
 const BrowserBackTestImgContainer = styled.div`

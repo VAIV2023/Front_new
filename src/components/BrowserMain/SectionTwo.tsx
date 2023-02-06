@@ -13,6 +13,7 @@ const SectionContainer = styled.div<ISection>`
     width: 100%;
     height: ${(props) => props.Height};
     background-color: white;
+
 `
 
 
@@ -47,21 +48,23 @@ const ButtonWrapper = styled.div`
 `
 const TodaysPickButton = styled.button`
     display:flex;
-    background-color: #093687;
+    color:#093687;
+    background-color: white;
     width: 50%;
     height: 8vh;
     align-items: center;
     justify-content: center;
-    color: white;
     font-weight: bold;
     font-size: 1.5rem;
     border-radius: 1rem;
-    border: 10px white;
+    border: 2px solid #093687;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
 
     &:hover {
-        transform: scale(1.2);
-        transition: transform .5s;
+        color:white;
+        background-color: #093687;
+        //transform: scale(1.2);
+        //transition: transform .5s;
         cursor: pointer;
     }
 
@@ -141,7 +144,7 @@ function BrowserMainsectionTwo(){
     }
 
     return(
-        <SectionContainer Height='40vh'>
+        <SectionContainer Height='45vh'>
             <SectionStockPickContainer>
                 <SectionStockPick Width = '30%'>
                     <BrowserTextBox Width = '100%' Height='10vh' FontSize = "" FontWeight = "bold" FontColor=""  Justify='left' Border = {false}></BrowserTextBox>

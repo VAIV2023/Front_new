@@ -13,7 +13,7 @@ import { AuthKEY, EndPoint } from '../../data/KRX';
 const BrowserMainContainer = styled.div`
     height:100%;
     padding-top: 8vh;
-    background-color: aliceblue;
+    background-color: white;
 `
 
 const BrowserMainIntroContainer = styled.div`
@@ -85,10 +85,8 @@ const BrowserKosdakNumInfo = styled.div`
 
 
 
-
-
-
-axios.get(EndPoint, {
+const test = () =>{
+    axios.get(EndPoint, {
         params: {
             serviceKey: `${AuthKEY}`,
             numOfRows: '1',
@@ -96,7 +94,7 @@ axios.get(EndPoint, {
             resultType: 'json',
             itmsNm: '삼성전자'
         },
-    }).then(
+    }).then((res) => console.log(res.data.response.body.items.item[0])
     );
 
 
