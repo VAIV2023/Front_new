@@ -9,7 +9,7 @@ function BooleanColumnChart({ series, labels }: BooleanColumnChartType) {
     series,
     options: {
       chart: {
-        width: 500,
+        width: 380,
         type: "pie",
       },
       labels,
@@ -33,7 +33,7 @@ function BooleanColumnChart({ series, labels }: BooleanColumnChartType) {
       options={chartOption.options as any}
       series={chartOption.series}
       type="pie"
-      width={500}
+      width={380}
     />
   );
 }

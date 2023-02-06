@@ -83,23 +83,23 @@ interface IBotton{
 
 const SectionButton = styled.button<IBotton>`
     display:flex;
-    background-color: ${(props) => props.Color};
+    background-color: white;
     width: 13%;
     height: 8vh;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: ${(props) => props.Color};
     font-weight: bold;
     font-size: 1.2rem;
     border-radius: 1rem;
-    border: 10px white;
+    border: 2px solid ${(props) => props.Color};
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
     margin-left: ${(props)=> props.MarginL};
     margin-right: ${(props)=> props.MarginR};
 
     &:hover {
-        transform: scale(1.2);
-        transition: transform .5s;
+        color:white;
+        background-color: ${(props) => props.Color};
         cursor: pointer;
     }
 

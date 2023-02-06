@@ -12,6 +12,12 @@ const BrowserBackTestContainer = styled.div`
     background-color: aliceblue;
 `
 
+const BrowserBackTestWhiteContainer = styled.div`
+    display:flex;
+    flex-direction: column;
+    background-color: white;
+`
+
 const BrowserBackTestImgContainer = styled.div`
     display:flex;
     flex-direction: column;
@@ -248,74 +254,76 @@ function BrowserBackTestPage(){
                     <BrowserTextBox Width='30%' Height='20vh' FontSize='5rem' FontColor='white' Isbold={true} Justify="center" Align='center'>Back Test</BrowserTextBox>
                 </BrowserBackTestImgContainer>
             </BrowserBackTestContainer>
-            <BrowserTextBox Width='30%' Height='15vh' FontSize='2rem' FontColor='#374054' Isbold={true} Left="20%" Align='center'>백테스트</BrowserTextBox>
-            <BrowserTextBox Width='50%' Height='10vh' FontSize='1rem' FontColor='#555555f0' Isbold={true} Left="20%">모델의 성능을 확인해보세요!</BrowserTextBox>
-            <BrowserBackTestComponentContainer>
-                <BrowserTextBox Width='100%' Height='8vh' FontSize='1.3rem' FontColor='#374054' Isbold={true} Align='center'>기본조건</BrowserTextBox>
-                <BrowserBackTestSectionContainer>
-                    <SelectBox Width='60%' Height='20vh'>
-                        <SelectBoxTop Color ="#F1F3F5">운용기간</SelectBoxTop>
-                        <SelectBoxBottom>
-                            <DatePickerWrapper>
-                                <MyDatePicker selected={startDate} onChange={(date: Date) => setStartDate(date)} selectsStart maxDate={endDate}/>
-                            </DatePickerWrapper>
-                            <BrowserTextBox Width='10%' Height='' FontSize='1rem' FontColor='' Isbold={false} Justify="center">부터</BrowserTextBox>
-                            <DatePickerWrapper>
-                                <MyDatePicker selected={endDate} onChange={(date: Date) => setEndDate(date)} selectsEnd minDate={startDate}/>
-                            </DatePickerWrapper>
-                            <BrowserTextBox Width='10%' Height='' FontSize='1rem' FontColor='' Isbold={false} Justify="center">까지</BrowserTextBox>
-                        </SelectBoxBottom>
-                    </SelectBox>
-                    <SelectBox Width='35%' Height='20vh'>
-                        <SelectBoxTop Color ="#F1F3F5">수수료율</SelectBoxTop>
-                        <SelectBoxBottom>
-                            <InputField min="0" max="5" placeholder="0.2" type= 'Number' step={0.1} onChange={handleChangeCommission} maxLength={3}></InputField>
-                            <BrowserTextBox Width='15%' Height='' FontSize='1rem' FontColor='' Isbold={false} Justify="center">%</BrowserTextBox>
-                        </SelectBoxBottom>
-                        
-                    </SelectBox>
-                </BrowserBackTestSectionContainer>
-                <BrowserTextBox Width='100%' Height='8vh' FontSize='1.3rem' FontColor='red' Isbold={true} Align='center'>매수조건</BrowserTextBox>
-                <BrowserBackTestSectionContainer>
-                    <SelectBox Width='60%' Height='20vh'>
-                        <SelectBoxTop Color ="#FCECEC">종목군</SelectBoxTop>
-                        <SelectBoxBottom>
-                            <SelectionBoxBottomSplit>
-                                <CheckBox getCheck={() => onClickCheck(0)}/>
-                                <BrowserTextBox Width='10%' Height='' FontSize='1rem' FontColor='' Isbold={false} Justify="center" Left='15%'>KOSPI</BrowserTextBox>    
-                            </SelectionBoxBottomSplit>
-                            <SelectionBoxBottomSplit>
-                                <CheckBox getCheck={() => onClickCheck(1)}/>
-                                <BrowserTextBox Width='10%' Height='' FontSize='1rem' FontColor='' Isbold={false} Justify="center" Left='20%'>KOSDAK</BrowserTextBox>
-                            </SelectionBoxBottomSplit>
-                        </SelectBoxBottom>
-                    </SelectBox>
-                    <SelectBox Width='35%' Height='20vh'>
-                        <SelectBoxTop Color ="#FCECEC">최대 보유종목 수</SelectBoxTop>
-                        <SelectBoxBottom>
-                            <InputField min="0" max="25" placeholder="0" type= 'Number' onChange={handleChangeNumOfStock} maxLength={2}></InputField>
-                            <BrowserTextBox Width='15%' Height='' FontSize='1rem' FontColor='' Isbold={false} Justify="right" Left=' '>종목</BrowserTextBox>
-                        </SelectBoxBottom>
-                    </SelectBox>
-                </BrowserBackTestSectionContainer>
-                <BrowserTextBox Width='100%' Height='8vh' FontSize='1.3rem' FontColor='#63A0FF' Isbold={true} Align='center'>매도조건</BrowserTextBox>
-                <BrowserBackTestSectionContainer>
-                    <SelectBox Width='60%' Height='20vh'>
-                        <SelectBoxTop Color ="#E1F1F8">매도 가격 기준</SelectBoxTop>
-                        <SelectBoxBottom>
-                            <BrowserTextBox Width='15%' Height='' FontSize='1rem' FontColor='' Isbold={false} Justify="left" Left=' '>전일종가</BrowserTextBox>
-                            <InputField min="0" max="100" placeholder="0" type= 'Number' onChange={handleChangeSellRatio} maxLength={2}></InputField>
-                            <BrowserTextBox Width='10%' Height='' FontSize='1rem' FontColor='' Isbold={false} Justify="center" Left=' '>%</BrowserTextBox>
-                        </SelectBoxBottom>
-                    </SelectBox>
-                </BrowserBackTestSectionContainer>
-            </BrowserBackTestComponentContainer>
-            <BackTestButtonSection>
-                <BackTestButtonWrapper>
-                    <BackTestButton BackColor='#F1F3F5' FontColor ='#374054' onClick={() => navigate("/")}>처음으로</BackTestButton>
-                    <BackTestButton BackColor='#63A0FF' FontColor='white' onClick={() => navigate("/result")}>백테스트 실행</BackTestButton>
-                </BackTestButtonWrapper>
-            </BackTestButtonSection>
+                <BrowserBackTestWhiteContainer>
+                <BrowserTextBox Width='30%' Height='15vh' FontSize='2rem' FontColor='#374054' Isbold={true} Left="20%" Align='center'>백테스트</BrowserTextBox>
+                <BrowserTextBox Width='50%' Height='10vh' FontSize='1rem' FontColor='#555555f0' Isbold={true} Left="20%">모델의 성능을 확인해보세요!</BrowserTextBox>
+                <BrowserBackTestComponentContainer>
+                    <BrowserTextBox Width='100%' Height='8vh' FontSize='1.3rem' FontColor='#374054' Isbold={true} Align='center'>기본조건</BrowserTextBox>
+                    <BrowserBackTestSectionContainer>
+                        <SelectBox Width='60%' Height='20vh'>
+                            <SelectBoxTop Color ="#F1F3F5">운용기간</SelectBoxTop>
+                            <SelectBoxBottom>
+                                <DatePickerWrapper>
+                                    <MyDatePicker selected={startDate} onChange={(date: Date) => setStartDate(date)} selectsStart maxDate={endDate}/>
+                                </DatePickerWrapper>
+                                <BrowserTextBox Width='10%' Height='' FontSize='1rem' FontColor='' Isbold={false} Justify="center">부터</BrowserTextBox>
+                                <DatePickerWrapper>
+                                    <MyDatePicker selected={endDate} onChange={(date: Date) => setEndDate(date)} selectsEnd minDate={startDate}/>
+                                </DatePickerWrapper>
+                                <BrowserTextBox Width='10%' Height='' FontSize='1rem' FontColor='' Isbold={false} Justify="center">까지</BrowserTextBox>
+                            </SelectBoxBottom>
+                        </SelectBox>
+                        <SelectBox Width='35%' Height='20vh'>
+                            <SelectBoxTop Color ="#F1F3F5">수수료율</SelectBoxTop>
+                            <SelectBoxBottom>
+                                <InputField min="0" max="5" placeholder="0.2" type= 'Number' step={0.1} onChange={handleChangeCommission} maxLength={3}></InputField>
+                                <BrowserTextBox Width='15%' Height='' FontSize='1rem' FontColor='' Isbold={false} Justify="center">%</BrowserTextBox>
+                            </SelectBoxBottom>
+                            
+                        </SelectBox>
+                    </BrowserBackTestSectionContainer>
+                    <BrowserTextBox Width='100%' Height='8vh' FontSize='1.3rem' FontColor='red' Isbold={true} Align='center'>매수조건</BrowserTextBox>
+                    <BrowserBackTestSectionContainer>
+                        <SelectBox Width='60%' Height='20vh'>
+                            <SelectBoxTop Color ="#FCECEC">종목군</SelectBoxTop>
+                            <SelectBoxBottom>
+                                <SelectionBoxBottomSplit>
+                                    <CheckBox getCheck={() => onClickCheck(0)}/>
+                                    <BrowserTextBox Width='10%' Height='' FontSize='1rem' FontColor='' Isbold={false} Justify="center" Left='15%'>KOSPI</BrowserTextBox>    
+                                </SelectionBoxBottomSplit>
+                                <SelectionBoxBottomSplit>
+                                    <CheckBox getCheck={() => onClickCheck(1)}/>
+                                    <BrowserTextBox Width='10%' Height='' FontSize='1rem' FontColor='' Isbold={false} Justify="center" Left='20%'>KOSDAK</BrowserTextBox>
+                                </SelectionBoxBottomSplit>
+                            </SelectBoxBottom>
+                        </SelectBox>
+                        <SelectBox Width='35%' Height='20vh'>
+                            <SelectBoxTop Color ="#FCECEC">최대 보유종목 수</SelectBoxTop>
+                            <SelectBoxBottom>
+                                <InputField min="0" max="25" placeholder="0" type= 'Number' onChange={handleChangeNumOfStock} maxLength={2}></InputField>
+                                <BrowserTextBox Width='15%' Height='' FontSize='1rem' FontColor='' Isbold={false} Justify="right" Left=' '>종목</BrowserTextBox>
+                            </SelectBoxBottom>
+                        </SelectBox>
+                    </BrowserBackTestSectionContainer>
+                    <BrowserTextBox Width='100%' Height='8vh' FontSize='1.3rem' FontColor='#63A0FF' Isbold={true} Align='center'>매도조건</BrowserTextBox>
+                    <BrowserBackTestSectionContainer>
+                        <SelectBox Width='60%' Height='20vh'>
+                            <SelectBoxTop Color ="#E1F1F8">매도 가격 기준</SelectBoxTop>
+                            <SelectBoxBottom>
+                                <BrowserTextBox Width='15%' Height='' FontSize='1rem' FontColor='' Isbold={false} Justify="left" Left=' '>전일종가</BrowserTextBox>
+                                <InputField min="0" max="100" placeholder="0" type= 'Number' onChange={handleChangeSellRatio} maxLength={2}></InputField>
+                                <BrowserTextBox Width='10%' Height='' FontSize='1rem' FontColor='' Isbold={false} Justify="center" Left=' '>%</BrowserTextBox>
+                            </SelectBoxBottom>
+                        </SelectBox>
+                    </BrowserBackTestSectionContainer>
+                </BrowserBackTestComponentContainer>
+                <BackTestButtonSection>
+                    <BackTestButtonWrapper>
+                        <BackTestButton BackColor='#F1F3F5' FontColor ='#374054' onClick={() => navigate("/")}>처음으로</BackTestButton>
+                        <BackTestButton BackColor='#63A0FF' FontColor='white' onClick={() => navigate("/result")}>백테스트 실행</BackTestButton>
+                    </BackTestButtonWrapper>
+                </BackTestButtonSection>
+            </BrowserBackTestWhiteContainer>
         </>
     );
 }
