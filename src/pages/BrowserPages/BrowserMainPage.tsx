@@ -13,7 +13,7 @@ import { AuthKEY, EndPoint } from '../../data/KRX';
 const BrowserMainContainer = styled.div`
     height:100%;
     padding-top: 8vh;
-    //background-color: aliceblue;
+    background-color: white;
 `
 
 const BrowserMainIntroContainer = styled.div`

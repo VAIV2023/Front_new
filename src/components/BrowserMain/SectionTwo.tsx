@@ -13,6 +13,7 @@ const SectionContainer = styled.div<ISection>`
     width: 100%;
     height: ${(props) => props.Height};
     background-color: white;
+
 `
 
 
@@ -141,7 +142,7 @@ function BrowserMainsectionTwo(){
     }
 
     return(
-        <SectionContainer Height='40vh'>
+        <SectionContainer Height='45vh'>
             <SectionStockPickContainer>
                 <SectionStockPick Width = '30%'>
                     <BrowserTextBox Width = '100%' Height='10vh' FontSize = "" FontWeight = "bold" FontColor=""  Justify='left' Border = {false}></BrowserTextBox>

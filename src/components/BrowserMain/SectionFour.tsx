@@ -124,7 +124,7 @@ function BrowserMainsectionFour(){
             <SectionWrapper>
                 <SectionTitleWrapper>
                     <BrowserTextBox Width='50%' Height='10vh' FontSize='1.5rem' FontColor='' Isbold={false} Justify ="right" Align='center'>"Easy to Use"</BrowserTextBox>
-                    <BrowserTextBox Width='50%' Height='10vh' FontSize='1.5rem' FontColor='#63A0FF' Isbold={true} Justify ="left" Margin = "1vw" Align='center'>SUDOVISOR</BrowserTextBox>
+                    <BrowserTextBox Width='50%' Height='10vh' FontSize='1.5rem' FontColor='#63A0FF' Isbold={true} Justify ="left" Margin = "1vw" Align='center'>SUKKUNT</BrowserTextBox>
                 </SectionTitleWrapper>
                 <SectionInfoWrapper>
                     <SectionInfoComponent>
