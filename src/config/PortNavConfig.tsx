@@ -15,13 +15,13 @@ const PortnavConfig = [
     icon: getIcon("eva:pie-chart-2-fill"),
   },
   {
-    title: "Simulate / 시뮬레이션",
-    path: "/manage/:clubID/recruit",
+    title: "Transaction / 매매관리",
+    path: "/portpolio/transaction",
     icon: getIcon("material-symbols:data-thresholding-outline-rounded"),
   },
   {
     title: "Account / 계좌관리",
-    path: "/manage/:clubID/accountBook",
+    path: "/portpolio/account",
     icon: getIcon("fa-solid:money-check-alt"),
   },
 ];

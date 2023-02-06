@@ -66,7 +66,7 @@ export default function AppWebsiteVisits({
       y: {
         formatter: (y: any) => {
           if (typeof y !== "undefined") {
-            return `${y.toFixed(0)} 명`;
+            return `${y.toFixed(0)} 원`;
           }
           return y;
         },
