@@ -3,23 +3,58 @@ import Navigator from '../../components/Navigator';
 import { PaginationTable } from '../../components/PaginationTable'
 import React, {useEffect, useState} from 'react';
 import { isClicked } from '../../atoms/ButtonAtom';
-import { useRecoilState } from 'recoil';
+import { atom, useRecoilState } from 'recoil';
 import axios from 'axios';
 import { AuthKEY, EndPoint } from '../../data/KRX';
 import BackGround from '../../assets/images/title_background.png';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import GoogleChart from '../../components/GoogleChart';
+import {GoogleChart} from '../../components/GoogleChart';
+import { KrxStockType } from "../../types/KrxStockType";
+// import {test} from "../../fetch/fetchkrx"
+import {useQuery} from 'react-query'
+import MOCK_DATA from '../../components/MOCK_DATA.json'
+import { PaginationTable2 } from '../../components/TableHead';
+import { tossTicker } from '../../atoms/TickerAtom';
 
 
 const BrowserTodaystockContainer = styled.div`
-    height:100%;
+    height:100vh;
     padding-top: 8vh;
+    background-color: white;
 `
 
 const ButtonContainer = styled.div`
     display: flex;
     margin-left: 2vw;
-    margin-top: 1vw;
+    margin-top: 2vh;
+    margin-bottom: 1vh;
+`
+interface MText{
+    Background: string;
+    FontColor: string;
+}
+
+const MarketDiv = styled.div<MText>`
+    /*공통 스타일*/
+    flex-direction: row;
+    float:left;
+    align-items: center;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-right: 1rem;
+    text-align:center;
+    line-height: 2.25rem;
+    /*크기*/
+    height: 2.25rem;
+    width: 7rem;
+    font-size: 1rem;
+    background: ${(props) => props.Background};
+    color: ${(props) => props.FontColor};
 `
 
 const KosButton = styled.button`
@@ -57,12 +92,17 @@ const KosButton = styled.button`
 
 const StockContainer = styled.div`
     display: flex;
+    background-color:white;
 `
 
 const RightSide = styled.div`
-    width: 35vw;
-    padding-right: 1rem;
-    margin-top: 10vh;
+    margin-top: 5vh;
+    position:fixed;
+    right: 50%;
+    top: 180px;
+    margin-right: -720px;
+    text-align:center;
+    width:35vw;
 `
 
 const SelectBoxBottom =styled.div`
@@ -90,7 +130,6 @@ interface IText{
     Left?: string;
     Right?:string;
     Isbold: boolean;
-    
 }
 
 const BrowserBox = styled.div<IText>`
@@ -119,7 +158,7 @@ const BrowserBackTestImgContainer = styled.div`
     &::after {
         content:'';
         width: 100%;
-        height: 30vh;
+        height: 20vh;
         background-image: url(${BackGround});
         background-repeat: no-repeat;
         background-size: 100% 20vh;
@@ -141,7 +180,6 @@ interface IText{
     Left?: string;
     Right?:string;
     Isbold: boolean;
-    
 }
 
 const BrowserTextBox = styled.div<IText>`
@@ -157,9 +195,49 @@ const BrowserTextBox = styled.div<IText>`
     padding-right:${(props) => props.Right};
 `
 
+const TickerContainer = styled.div`
+    margin: 0;
+    padding: 0;
+`
+
+const ResetButton = styled.button`
+    /*공통 스타일*/
+    // display: inline-flex;
+    flex-direction: row;
+    float:left;
+    align-items: center;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-right: 1rem;
+    /*크기*/
+    height: 2.25rem;
+    width: 14rem;
+    font-size: 1rem;
+    margin-left: 1rem;
+    /*색상 */
+    background: red;
+    &:hover{
+        background: #a85432;
+    }
+    &:active{
+        background: #a87732;
+    }
+    // /*기타 */
+    // & + & {
+    //     margin-left: 1rem;
+    // }
+`
+
 const current = new Date();
 const date = `${current.getFullYear()}/${current.getMonth()+1}/${current.getDate()}`;
 
+// console.log(MOCK_DATA[0].Ticker)
 
 function BrowserTodaystockPage(){
     
@@ -178,54 +256,92 @@ function BrowserTodaystockPage(){
         const button: HTMLButtonElement = event.currentTarget;
         alert("Purchase completed")
     };
+    // console.log(MOCK_DATA[1].Ticker)
 
-    interface ExampleObject {
-        [key:string] : any
-    }
+    const buttonReset = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+    
+        const button: HTMLButtonElement = event.currentTarget;
+        setIsClick(false);
+        setToss("000000");
+      }; 
 
-    const [stock, setStock] = useState<ExampleObject[]>()
- 
+    const [kosdaqList, setKosdaqList] = useState<string[]>(Array)
+    const [kospiList, setKospiList] = useState<string[]>(Array)
     useEffect(()=>{
-        axios.get(EndPoint, {
-            params:{
-                serviceKey: `${AuthKEY}`,
-                numOfRows: '10',
-                pageNo: '1',
-                resultType: 'json',
-                itmsNm: '삼성전자'
-            },
-        }).then((res:any) => setStock(res.data.response.body.items.item))
-    },[])
-        
-    if(stock){
-        console.log(stock['0'].vs)
-    }
+        let completed = false;
 
+        async function get(){
+            const result = await axios.get(
+                "http://43.201.8.26:5000/showtoppick"
+            );
+            if(!completed){
+                setKosdaqList(result.data.KOSDAQ)
+                setKospiList(result.data.KOSPI)
+            }
+        }
+        get();
+        return () => {
+            completed = true;
+        };
+    },[])
+    
+    console.log(kosdaqList)
+    console.log(kospiList)
+
+    // const {data} = useQuery<void | KrxStockType[] | undefined>(
+    //     "test",
+    //     () => test(),
+    //     {
+    //         onSuccess: (data) => {
+    //           console.log(data);
+    //         },
+    //         onError: (error: any) => {
+    //           alert(error.response.data.error);
+    //         },
+    //     }
+    // );
+
+    // console.log(data)
+      
+    const [toss, setToss] = useRecoilState(tossTicker);
     return(
-        
         <>
             <Navigator/>
             <BrowserTodaystockContainer>
                 <BrowserBackTestImgContainer>
-                    <BrowserBox Width='30%' Height='20vh' FontSize='2.3rem' FontColor='black' Isbold={true} Justify="center" Align='center'>Today({date})'s Top Pick</BrowserBox>
+                    <BrowserBox Width='30%' Height='20vh' FontSize='2.3rem' FontColor='#004C8B' Isbold={true} Justify="center" Align='center'>Today({date})'s Top Pick</BrowserBox>
                 </BrowserBackTestImgContainer>
 
                 <StockContainer>
                     <div>
+                        
                         <ButtonContainer>
-                            <KosButton>KOSPI</KosButton>
+                            <MarketDiv FontColor='white' Background='#004C8B'>KOSPI</MarketDiv>
                         </ButtonContainer>
-                        <PaginationTable></PaginationTable>
+                        <PaginationTable2></PaginationTable2>
+                        <div>{kospiList.map((stock, index) => (
+                            <div key ={index}>
+                                <PaginationTable ticker = {stock}></PaginationTable>
+                            </div>
+                        ))}</div>
+                        
                         <ButtonContainer>
-                            <KosButton>KOSDAQ</KosButton>
+                            <MarketDiv FontColor='white' Background='#004C8B'>KOSDAQ</MarketDiv>
                         </ButtonContainer>
-                        <PaginationTable></PaginationTable>
+                        <div>{kosdaqList.map((stock, index) => (
+                            <div key ={index}>
+                                <PaginationTable ticker = {stock}></PaginationTable>
+                            </div>
+                        ))}</div>
+                        
                     </div>
                     
                     {isClick?(
                         <RightSide>
+                            <ResetButton onClick={buttonReset}>Reset Graph</ResetButton>
                             {/* <ImageContainer src={samsung}/> */}
-                            <GoogleChart></GoogleChart>
+                            <GoogleChart ticker={toss}></GoogleChart>
                             <StockContainer>
                                 <SelectBoxBottom>
                                     <InputField min="0" max="99" placeholder="0" type= 'Number' onChange={handleChangeNumOfStock} maxLength={2}></InputField>
@@ -236,7 +352,7 @@ function BrowserTodaystockPage(){
                             
                         </RightSide>
                     ):(
-                        <RightSide>Nah...</RightSide>
+                        <RightSide>Click "See more" button to see Candlestick chart</RightSide>
                     )}
 
                 </StockContainer>     

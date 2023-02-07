@@ -96,6 +96,7 @@ const test = () =>{
         },
     }).then((res) => console.log(res.data.response.body.items.item[0])
     );
+}
 
 
     // (res) => console.log(res.data.response.body.items.item[0])

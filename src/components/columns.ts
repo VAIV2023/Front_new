@@ -1,26 +1,22 @@
 export const COLUMNS = [
     {
-        Header : 'N',
-        accessor : 'N'
-    },
-    {
         Header : 'Stock Name',
         accessor : 'Stock_Name'
     },
     {
-        Header : 'Present Price',
-        accessor : 'Present_Price'
+        Header : 'Ticker_no',
+        accessor : 'Ticker no'
     },
     {
-        Header : 'Day to day ratio',
-        accessor : 'Day_to_day_ratio'
+        Header : 'Previous_Day_Closing_Price',
+        accessor : 'Previous Day Closing Price'
     },
     {
-        Header : 'Fluctuation rate',
-        accessor : 'Fluctuation_rate'
+        Header : 'Day_to_Day_ratio',
+        accessor : 'Day to Day ratio'
     },
     {
-        Header : 'Confidence score',
-        accessor : 'Confidence_score'
+        Header : 'Fluctuation_rate',
+        accessor : 'Fluctuation rate'
     }
 ];
