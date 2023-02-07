@@ -4,14 +4,13 @@ import { COLUMNS } from "./columns";
 import { usePagination, useTable } from "react-table";
 import "./table.css";
 import styled from "styled-components";
-import { atom, useRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { isClicked } from "../atoms/ButtonAtom";
 import axios from "axios";
 import { AuthKEY, EndPoint } from "../data/KRX";
 import { KrxStockType } from "../types/KrxStockType";
 // import {test} from "../fetch/fetchkrx"
 import {useQuery} from 'react-query'
-import { tossTicker } from "../atoms/TickerAtom";
 
 const Button = styled.button`
   display: inline-flex;
@@ -44,16 +43,13 @@ const Button = styled.button`
   }
 `;
 
-interface Tableprops {
-  ticker : string;
-}
 
-export const PaginationTable = ({ticker}:Tableprops) => {
+
+export const PaginationTable2 = () => {
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => MOCK_DATA, []);
   const len: number = Object.keys(data).length;
   const [isClick, setIsClick] = useRecoilState(isClicked);
-  const [toss, setToss] = useRecoilState(tossTicker);
   // console.log(table_data)
   const {
     getTableProps,
@@ -97,65 +93,35 @@ export const PaginationTable = ({ticker}:Tableprops) => {
 
     const button: HTMLButtonElement = event.currentTarget;
     setIsClick(true);
-    setToss(ticker);
   }; 
-
-  interface ExampleObject {
-    [key:string] : any
-  }
-
-  const [stockInfo, setStockInfo] = useState<ExampleObject[]>()
-  // const array = ['삼성전자', '삼성바이오로직스', '삼성전자우', '삼성SDI', '삼성물산']
-  useEffect(()=>{
-    axios.get(EndPoint, {
-      params:{
-        serviceKey: `${AuthKEY}`,
-        numOfRows: '1',
-        pageNo: '1',
-        resultType: 'json',
-        likeSrtnCd: `${ticker}`
-      },
-    }).then((res:any) => setStockInfo(res.data.response.body.items.item))
-  },[])
-  let closingPrice:string
-  let itemName:string
-  let ratio:string
-  let rate:string
-  if(stockInfo){
-    console.log(stockInfo)
-    itemName = stockInfo[0].itmsNm
-    closingPrice = stockInfo[0].clpr
-    ratio = stockInfo[0].fltRt
-    rate = stockInfo[0].vs
-  }
-  // const clpr = stockInfo.clpr
+  
   return (
 
  
     <div className="table">
       <table {...getTableProps()}>
-        {/* <thead>
+        <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
-              {<th>Stock Name</th>}
               {headerGroup.headers.map((column) => (
                 <th {...column.getHeaderProps()}>{column.render("Header")}</th>
               ))}
-              {<th>More</th>}
+              {<th>More info...</th>}
             </tr>
           ))}
-        </thead> */}
+        </thead>
 
-        <tbody {...getTableBodyProps()}>
+        {/* <tbody {...getTableBodyProps()}>
           {page.map((row: any) => {
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
-                {<td>{itemName}</td>}
                 {<td>{ticker}</td>}
-                {<td>{closingPrice}</td>}
-                {<td>{ratio}</td>}
-                {<td>{rate}</td>}
+                {row.cells.map((cell: any) => {
+                  return (
+                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                  );
+                })}
                 {
                   <td>
                     <Button onClick={buttonHandler}>See More</Button>
@@ -164,10 +130,10 @@ export const PaginationTable = ({ticker}:Tableprops) => {
               </tr>
             );
           })}
-        </tbody>
+        </tbody> */}
       </table>
     </div>
   );
 };
 
-export default PaginationTable;
+export default PaginationTable2;
