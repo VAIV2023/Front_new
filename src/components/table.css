@@ -1,5 +1,5 @@
 .table {
-    margin: 1vw 2vw 1vw 2vw;
+    margin: 0vw 2vw 0vw 2vw;
 }
 table {
     font-family: Arial, Helvetica, sans-serif;
@@ -10,8 +10,11 @@ table {
 table td, table th {
     border: 1px solid #ddd;
     padding: 8px;
+    text-align:right;
+    /* display:inline-block; */
+    width: 15vw;
     /* color: if($props[0]=='+', 'red', 'blue') */
-    color: if(props[0]=='+' ? 'red' : 'blue')
+    /* color: if(props[0]=='+' ? 'red' : 'blue') */
 }
 table tr:nth-child(even){
     background-color: #f2f2f2;
@@ -22,7 +25,8 @@ table tr:hover {
 table th {
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
-    background-color: #04AA6D;
+    text-align: right;
+    background-color: #1FA1FF;
     color: white;
+    width:100px;
 }
