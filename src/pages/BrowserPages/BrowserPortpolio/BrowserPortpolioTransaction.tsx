@@ -88,7 +88,7 @@ export default function BrowserPortpolioTransaction(){
             
             <Grid container spacing={3} sx = {{mt: 5, mb:5}}>
                 {holdingStockList.map((element) => (
-                    <Grid item xs={12} md={6} lg={4}>
+                    <Grid item xs={12} sm={6} lg={4}>
                         <TransactionCardHolding stockData ={element}/>
                     </Grid>
                 ))} 
