@@ -114,7 +114,7 @@ function BrowserMainsectionFour(){
             navigate("/about");
         }
         if(index === 1){
-            navigate("/portpolio");
+            navigate("/portpolio/main");
         }
 
     }

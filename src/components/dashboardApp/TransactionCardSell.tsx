@@ -5,7 +5,9 @@ import {
     CardHeader,
     Card,
     CardContent,
+    CardActions,
     Box,
+    Theme,
   } from "@mui/material";
 
 import { useQuery } from "react-query";
@@ -16,14 +18,14 @@ import { SellStockType } from "../../types/user_info";
 
 
 interface CardType{
-    likeIsinCd:string;
-    //stockData: SellStockType;
+    //likeIsinCd:string;
+    stockData: SellStockType;
 }
 
 
-export default function TransactionCardSell({likeIsinCd}:CardType){
-
-
+export default function TransactionCardSell({stockData}:CardType){
+  
+    /* console.log(likeIsinCd);
     const { data: currentPrice} = useQuery<KrxStockType>(
         `${likeIsinCd}`,
         () => fetchKrx(likeIsinCd),
@@ -35,14 +37,38 @@ export default function TransactionCardSell({likeIsinCd}:CardType){
             alert(error.response.data.error);
           },
         }
-    );  
+    );   */
    
 
     return(
-        <Card>
-            <CardHeader title = {currentPrice?.itmsNm}/>
+        <Card
+          sx={{
+            py: 2,
+            boxShadow: 0,
+            color: (theme: Theme) => theme.palette["error"].darker,
+            bgcolor:  (theme: Theme) => theme.palette["error"].lighter,
+          }}
+        >
+            <CardHeader title = {stockData.stockname}/>
             <CardContent>
-       
+              <Typography variant="body1" component="p" sx={{  fontWeight:"bold",pl:1, fontSize:"1.2rem" }}>
+                  보유기간 : {stockData.buy_date} ~ {stockData.sell_date}
+                </Typography>
+                <Typography variant="body1" component="p" sx={{  fontWeight:"bold", pt:2, pl:1, fontSize:"1.2rem" }}>
+                  매수가 : {stockData.buy_price}
+                </Typography>
+                <Typography variant="body1" component="p" sx={{  fontWeight:"bold", pt:2, pl:1, fontSize:"1.2rem" }}>
+                  총매수 : {stockData.buy_total_price}
+                </Typography>
+                <Typography variant="body1" component="p" sx={{  fontWeight:"bold", pt:2, pl:1, fontSize:"1.2rem" }}>
+                  매도가 : {stockData.sell_price}
+                </Typography>
+                <Typography variant="body1" component="p" sx={{  fontWeight:"bold", pt:2, pl:1, fontSize:"1.2rem" }}>
+                  총매도 : {stockData.sell_total_price}
+                </Typography>
+                <Typography variant="body1" component="p" sx={{  fontWeight:"bold", pt:2, pl:1, fontSize:"1.2rem" }}>
+                  수익률 : {stockData.rate}%
+                </Typography>
             </CardContent>
         </Card>
     );

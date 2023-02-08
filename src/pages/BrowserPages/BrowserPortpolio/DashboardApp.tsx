@@ -158,7 +158,7 @@ export default function DashboardApp() {
           <AppWidgetSummary
             title="총 평가"
             total={
-              '$ 1324'
+              '$ 18709000'
             } 
             icon={"mdi:account-details"}
           />
@@ -168,7 +168,7 @@ export default function DashboardApp() {
           <AppWidgetSummary
             title="총 손익"
             total={
-              '$ 1324'
+              '$ 246400'
             } 
             color="info"
             icon={"mdi:arrow-expand"}
@@ -179,7 +179,7 @@ export default function DashboardApp() {
           <AppWidgetSummary
             title="총 매입"
             total={
-              '$ 1324'
+              '$ 15037800'
             } 
             color="warning"
             icon={"icon-park-outline:buy"}
@@ -190,32 +190,32 @@ export default function DashboardApp() {
           <AppWidgetSummary
             title="실현 손익"
             total={
-              '$ 1324'
+              '$ 197120'
             } 
             color="error"
             icon={"mdi:report-bar"}
           />
         </Grid>
 
-        <Grid item xs={12} md={6} lg={12}>
+        <Grid item xs={12} md={12} lg={12}>
           <AppWebsiteVisits
             title="자산 흐름"
             subheader="현재 계좌 자산 흐름 그래프"
             chartLabels={
-              ["Son", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+              ["2.1", "2.2", "2.3", "2.6", "2.7", "2.8", "2.9"]
             } 
              chartData={[
               {
                 name: "총자산",
                 type: "area",
                 fill: "gradient",
-                data: [1, 3, 5, 2, 4, 1, 4],
+                data: [18500000, 18559000, 18509000, 18689000, 18779000, 18739000, 18709000],
               },
             ]} 
           /> 
         </Grid>
 
-        <Grid item xs={12} md={6} lg={12}>
+        {/* <Grid item xs={12} md={6} lg={12}> */}
 {/*           <AppConversionRates
             title="학과 분포"
             subheader="동아리원들의 학과 분포 그래프"
@@ -236,7 +236,7 @@ export default function DashboardApp() {
                   ]
             } 
           /> */}
-        </Grid>
+        {/* </Grid> */}
 
 {/*          {stringColumnsData.size > 0
           ? Array.from(stringColumnsData).map(([key, value]) => {
@@ -286,13 +286,13 @@ export default function DashboardApp() {
     
 
              
-        <Grid key={"보유주식 현황"} item xs={12} sm={6} md={6}>
+        <Grid key={"보유주식 현황"} item xs={12} xl={6}>
           <Card>
             <CardHeader title={"보유주식 현황"} />
             <Box sx={{ p: 2, pb: 1 }} dir="ltr">
               <BooleanColumnChart
-                series={[10,20,10,10,10,10,10,10,10,10]}
-                labels={["삼성전자","삼성SDI","삼성물산","삼성바이오로직스","삼성전자(우)","삼성생명","네이버","카카오","토스","우아한형제들"]}
+                series={[1984000,1977600,1960100,1977800,1868900,1974900,1352000,1942500]}
+                labels={["삼천당제약","삼성전자","삼성물산","삼성생명","현대자동차","현대제철","LG화학","LG이노텍"]}
               />
             </Box>
           </Card>
