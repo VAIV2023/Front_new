@@ -109,14 +109,17 @@ function Navigator(){
                     /* 로컬스토리지 삭제 */
                     localStorage.removeItem("id");
                     localStorage.removeItem("nickname");
-                    localStorage.removeItem("account_list");
-                    localStorage.removeItem("stock_info");
+                    //localStorage.removeItem("account_list");
+                    //localStorage.removeItem("stock_info");
                 },
                 fail(error: any) {
                 console.log(error);
                 },
             });
             window.Kakao.Auth.setAccessToken(undefined);
+        }else{
+            setIsLoggedIn(false);
+            alert("로그아웃 되었습니다");
         }
         navigate("/");
     };

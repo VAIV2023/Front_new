@@ -8,3 +8,9 @@ export const isLoggedInState = atom({
   default: false,
   effects_UNSTABLE: [persistAtom],
 });
+
+export const userID = atom<number>({
+  key: "userID",
+  default: 0,
+  effects_UNSTABLE: [persistAtom],
+});

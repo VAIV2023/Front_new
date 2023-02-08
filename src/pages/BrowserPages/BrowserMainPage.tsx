@@ -4,7 +4,11 @@ import SectionImg2 from '../../assets/images/SectionImg3.png';
 import BrowserMainSectionTwo from '../../components/BrowserMain/SectionTwo';
 import BrowserMainSectionThree from '../../components/BrowserMain/SectionThree';
 import BrowserMainsectionFour from '../../components/BrowserMain/SectionFour';
-
+import { useMutation } from "react-query";
+import { fetchLogin } from '../../fetch/fetchLogin/fetchLogin';
+import { useRecoilState } from 'recoil';
+import { userID } from '../../atoms/LoginAtom';
+import { useState, useEffect } from "react";
 import axios from 'axios';
 import { AuthKEY, EndPoint } from '../../data/KRX';
 
@@ -85,26 +89,22 @@ const BrowserKosdakNumInfo = styled.div`
 
 
 
-const test = () =>{
-    axios.get(EndPoint, {
-        params: {
-            serviceKey: `${AuthKEY}`,
-            numOfRows: '1',
-            pageNo: '1',
-            resultType: 'json',
-            itmsNm: '삼성전자'
-        },
-    }).then((res) => res.data.response.body.items.item[0]);   
-}
 
-console.log(test());
 
 
 
 
 function BrowserMainPage(){
-    const arr1=[];
-    console.log(arr1.length);
+    
+    const [userId, setUserId] = useRecoilState(userID);
+    console.log(userId);
+
+    const {mutate} = useMutation(() => fetchLogin(userId),{
+        onSuccess: (data) => {
+          console.log(data);
+        },
+        onError: (error) => console.log(error),
+    });
 
     return(
         <>

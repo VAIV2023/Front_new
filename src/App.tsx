@@ -3,15 +3,22 @@ import GlobalStyles from './GlobalStyled';
 import AppRouter from "./AppRouter";
 import { RecoilRoot } from "recoil";
 import ThemeProvider from "./theme";
+import { QueryClient, QueryClientProvider } from "react-query";
+
 
 function App() {
+  const queryClient = new QueryClient();
+  //axios.defaults.withCredentials = true;
+
   return (
     <>
       <GlobalStyles/>
       <ThemeProvider>
-        <RecoilRoot>
-          <AppRouter/>  
-        </RecoilRoot>
+        <QueryClientProvider client={queryClient}>
+          <RecoilRoot>
+            <AppRouter/>  
+          </RecoilRoot>
+        </QueryClientProvider>
       </ThemeProvider>
     </> 
   );
