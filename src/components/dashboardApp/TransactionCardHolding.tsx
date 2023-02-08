@@ -5,7 +5,10 @@ import {
     CardHeader,
     Card,
     CardContent,
+    Button,
     Box,
+    Theme,
+    CardActions,
   } from "@mui/material";
 
 import { useQuery } from "react-query";
@@ -16,17 +19,17 @@ import { SellStockType } from "../../types/user_info";
 
 
 interface CardType{
-    likeIsinCd:string;
-    //stockData: HoldingStockType;
+    //likeIsinCd:string;
+    stockData: HoldingStockType;
 }
 
 
-export default function TransactionCardHolding({likeIsinCd}:CardType){
+export default function TransactionCardHolding({stockData}:CardType){
 
 
     const { data: currentPrice} = useQuery<KrxStockType>(
-        `${likeIsinCd}`,
-        () => fetchKrx(likeIsinCd),
+        `${stockData.ticker}`,
+        () => fetchKrx(stockData.ticker),
         {
           onSuccess: (data) => {
             //console.log(data);
@@ -35,21 +38,47 @@ export default function TransactionCardHolding({likeIsinCd}:CardType){
             alert(error.response.data.error);
           },
         }
-    );  
+    );   
    
 
     return(
-        <Card>
-            <CardHeader title = {currentPrice?.itmsNm}/>
+        <Card
+          sx={{
+            py: 2,
+            boxShadow: 0,
+            color: (theme: Theme) => theme.palette["info"].darker,
+            bgcolor:  (theme: Theme) => theme.palette["info"].lighter,
+          }}
+        >
+            <CardHeader title = {stockData.stockname} sx={{fontWeight : "bold" , fontSize:"1.5rem" }}/>
             <CardContent>
-        
+              <Typography variant="body1" component="p" sx={{  fontWeight:"bold",pl:1, fontSize:"1.2rem" }}>
+                매수일 : {stockData.buy_date}
+              </Typography>
+              <Typography variant="body1" component="p" sx={{  fontWeight:"bold", pt:2, pl:1, fontSize:"1.2rem" }}>
+                매수가 : {stockData.buy_price}
+              </Typography>
+              <Typography variant="body1" component="p" sx={{  fontWeight:"bold", pt:2, pl:1, fontSize:"1.2rem" }}>
+                총매수 : {stockData.buy_total_price}
+              </Typography>
+              <Typography variant="body1" component="p" sx={{  fontWeight:"bold", pt:2, pl:1, fontSize:"1.2rem" }}>
+                전일종가 : {currentPrice?.clpr}
+              </Typography>
+              <Typography variant="body1" component="p" sx={{  fontWeight:"bold", pt:2, pl:1, fontSize:"1.2rem" }}>
+                총평가 : {Number(currentPrice?.clpr) * stockData.quantity}
+              </Typography>
+              <Typography variant="body1" component="p" sx={{  fontWeight:"bold", pt:2, pl:1, fontSize:"1.2rem" }}>
+                수량 : {stockData.quantity}
+              </Typography>
             </CardContent>
-            <CardContent>
-
-            </CardContent>
-            <CardContent>
-      
-            </CardContent>
+            <CardActions sx={{pl:4}}>
+              <Button variant="contained" color="success">
+                매수하기
+              </Button>
+              <Button variant="contained" color="error">
+                매도하기
+              </Button>
+            </CardActions>
         </Card>
     );
 }

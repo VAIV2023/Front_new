@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 import styled from "styled-components";
 import btn_login_kakao from "../assets/images/btn_login_kakao.png";
 import skku_logo from "../assets/images/skku_logo.png";
@@ -6,6 +7,8 @@ import vaiv_logo from "../assets/images/vaiv_logo.png";
 import { useState  } from "react";
 import { useRecoilState} from "recoil";
 import { isLoggedInState, userID } from "../atoms/LoginAtom";
+import { BaseURL } from '../data/BaseURL';
+
 
 import {
   AccountType,
@@ -69,6 +72,7 @@ function LoginBox() {
   const [userId, setUserId] = useRecoilState(userID);
   const navigate = useNavigate();
 
+  const Login_URL = `${BaseURL}/login`;
 
   /* 임시 주식 목록 생성 start */
   // 임시 생성
@@ -83,6 +87,16 @@ function LoginBox() {
           url: "/v2/user/me",
           success(res: any) {
             setIsLoggedIn(true);
+            axios.post(Login_URL,{ id: res.id })
+            .then((response) => {
+              localStorage.setItem("id", res.id);
+              localStorage.setItem(
+                "nickname",
+                res.kakao_account.profile.nickname
+              );
+              console.log(response);
+              navigate("/");
+            }); 
 /*             console.log(res);
             console.log(res.kakao_account);
             console.log(res.kakao_account.email);
@@ -90,12 +104,12 @@ function LoginBox() {
             console.log(res.kakao_account.gender);
             console.log(res.id);
             console.log(res.connected_at); */
-            setUserId(res.id);
+            /* setUserId(res.id); 
             localStorage.setItem("id", res.id);
             localStorage.setItem(
               "nickname",
               res.kakao_account.profile.nickname
-            );
+            ); */
 
 
             
@@ -111,7 +125,7 @@ function LoginBox() {
             //localStorage.setItem("stock_info", JSON.stringify(stock_info));
             /* 처음 로그인하는 id이면 DB에 새로 추가 */
 
-            navigate("/");
+            //navigate("/");
           },
           fail(err: any) {
             console.log(err);

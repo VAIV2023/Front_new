@@ -61,7 +61,7 @@ export default function AccountModal({
                     label="계좌명"
                     variant="outlined"
                     onChange={handleTextChange}
-                    helperText = {validation()? "특수문자는 입력할 수 없습니다.":""}
+                    helperText = {validation()? "특수문자,숫자는 입력할 수 없습니다.":""}
                     error = {validation()}
                     inputProps={{ maxLength: 8 }}
                 ></TextField>
