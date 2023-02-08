@@ -107,7 +107,7 @@ function BrowserMainPage(){
                         </BrowserKospiNumInfo>
                         <BrowserKosdakNumInfo>
                             <BrowserTextBox FontSize='2rem' FontColor='darkblue' Width= '10vw' Height = '9vh' Isbold = {true} Align ={true}>1500</BrowserTextBox>
-                            <BrowserTextBox FontSize='1rem' FontColor='#6f6f6fef' Width= '10vw' Height = '6vh' Isbold = {false} Align ={false}>Kosdak</BrowserTextBox>
+                            <BrowserTextBox FontSize='1rem' FontColor='#6f6f6fef' Width= '10vw' Height = '6vh' Isbold = {false} Align ={false}>Kosdaq</BrowserTextBox>
                         </BrowserKosdakNumInfo>
                     </BrowserStockNumInfo>
                 </BrowserMainIntroContainer>

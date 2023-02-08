@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Navigator from '../../components/Navigator';
 import { PaginationTable } from '../../components/PaginationTable'
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, Suspense} from 'react';
 import { isClicked } from '../../atoms/ButtonAtom';
 import { atom, useRecoilState } from 'recoil';
 import axios from 'axios';
@@ -241,6 +241,8 @@ const date = `${current.getFullYear()}/${current.getMonth()+1}/${current.getDate
 
 // export let kosdaqArr:string[] = []
 // export let kospiArr:string[] = []
+
+// const PaginationTable = React.lazy(()=> import("../../components/PaginationTable"))
 
 function BrowserTodaystockPage(){
     
