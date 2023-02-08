@@ -21,7 +21,7 @@ function BooleanColumnChart({ series, labels }: BooleanColumnChartType) {
               width: 300,
             },
             legend: {
-              position: "bottom",
+              position: "right",
             },
           },
         },

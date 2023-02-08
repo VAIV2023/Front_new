@@ -51,7 +51,17 @@ function AppRouter() {
     }
        return(
         <Routes>
-          <Route path="/" element={<MobileMainPage/>} />
+          <Route path="/" element={<BrowserMainPage/>} />
+          <Route path="/about" element={<BrowserAboutPage/>} />
+          <Route path="/todaystock" element={<BrowserTodaystockPage/>} />
+          <Route path="/backtest" element={<BrowserBackTestPage/>}/>
+          <Route path="/result" element={<BrowserBackTestResultPage />} />
+          <Route path="/portpolio" element={isLoggedIn ? <BrowserPortoilio/> : <Navigate replace to="/" />} >
+            <Route path="main" element={<DashboardApp/>} />
+            <Route path="account" element={<BrowserPortpolioAccount/>} />
+            <Route path="transaction" element={<BrowserPortpolioTransaction/>} />
+          </Route>
+          <Route path="/login" element={isLoggedIn ? <Navigate replace to="/" /> : <BrowserLoginPage/>} />
         </Routes>
       ) 
   };
