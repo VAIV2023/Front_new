@@ -239,6 +239,9 @@ const date = `${current.getFullYear()}/${current.getMonth()+1}/${current.getDate
 
 // console.log(MOCK_DATA[0].Ticker)
 
+// export let kosdaqArr:string[] = []
+// export let kospiArr:string[] = []
+
 function BrowserTodaystockPage(){
     
     const [numOfStock, setnumOfStock] = useState<Number>(0);
@@ -254,7 +257,7 @@ function BrowserTodaystockPage(){
         event.preventDefault();
 
         const button: HTMLButtonElement = event.currentTarget;
-        alert("Purchase completed")
+        alert("매수 완료!")
     };
     // console.log(MOCK_DATA[1].Ticker)
 
@@ -264,16 +267,23 @@ function BrowserTodaystockPage(){
         const button: HTMLButtonElement = event.currentTarget;
         setIsClick(false);
         setToss("000000");
-      }; 
+    }; 
 
-    const [kosdaqList, setKosdaqList] = useState<string[]>(Array)
-    const [kospiList, setKospiList] = useState<string[]>(Array)
+    interface newObject {
+        end: string;
+        start: string;
+        ticker: string
+    }
+
+
+    const [kosdaqList, setKosdaqList] = useState<newObject[]>(Array)
+    const [kospiList, setKospiList] = useState<newObject[]>(Array)
     useEffect(()=>{
         let completed = false;
 
         async function get(){
             const result = await axios.get(
-                "http://43.201.8.26:5000/showtoppick"
+                "http://3.37.180.191:5000/showtoppick"
             );
             if(!completed){
                 setKosdaqList(result.data.KOSDAQ)
@@ -288,6 +298,46 @@ function BrowserTodaystockPage(){
     
     console.log(kosdaqList)
     console.log(kospiList)
+
+    let kosdaqtemp:string[] = []
+    let kospitemp:string[] = []
+
+    if(kosdaqList){
+        for(let i = 0; i < kosdaqList.length; i++){
+            kosdaqtemp.push(kosdaqList[i].ticker)
+        }
+    
+        for(let i = 0; i < kospiList.length; i++){
+            kospitemp.push(kospiList[i].ticker)
+        }
+    }
+    
+    if(kosdaqtemp){
+        console.log(kosdaqtemp)
+        console.log(kospitemp)
+    }
+
+
+
+    // const [kosdaqArr, setKosdaqArr] = useState<string[]>(Array)
+    // const [kospiArr, setKospiArr] = useState<string[]>(Array)
+    // useEffect(()=>{
+    //     setKosdaqArr(kosdaqtemp)
+    //     setKospiArr(kospitemp)
+    // }, [])
+
+    // let kosdaqArr:string[] = []
+    // let kospiArr:string[] = []
+
+    // for(let i = 0; i < kosdaqList.length; i++){
+    //     kosdaqArr.push(kosdaqList[i].ticker)
+    //     console.log(kosdaqArr[i])
+    // }
+ 
+    // for(let i = 0; i < kospiList.length; i++){
+    //     kospiArr.push(kospiList[i].ticker)
+    //     console.log(kosdaqArr[i])
+    // }
 
     // const {data} = useQuery<void | KrxStockType[] | undefined>(
     //     "test",
@@ -320,7 +370,7 @@ function BrowserTodaystockPage(){
                             <MarketDiv FontColor='white' Background='#004C8B'>KOSPI</MarketDiv>
                         </ButtonContainer>
                         <PaginationTable2></PaginationTable2>
-                        <div>{kospiList.map((stock, index) => (
+                        <div>{kospitemp.map((stock, index) => (
                             <div key ={index}>
                                 <PaginationTable ticker = {stock}></PaginationTable>
                             </div>
@@ -329,7 +379,7 @@ function BrowserTodaystockPage(){
                         <ButtonContainer>
                             <MarketDiv FontColor='white' Background='#004C8B'>KOSDAQ</MarketDiv>
                         </ButtonContainer>
-                        <div>{kosdaqList.map((stock, index) => (
+                        <div>{kosdaqtemp.map((stock, index) => (
                             <div key ={index}>
                                 <PaginationTable ticker = {stock}></PaginationTable>
                             </div>
@@ -339,7 +389,7 @@ function BrowserTodaystockPage(){
                     
                     {isClick?(
                         <RightSide>
-                            <ResetButton onClick={buttonReset}>Reset Graph</ResetButton>
+                            <ResetButton onClick={buttonReset}>차트 초기화</ResetButton>
                             {/* <ImageContainer src={samsung}/> */}
                             <GoogleChart ticker={toss}></GoogleChart>
                             <StockContainer>
@@ -347,12 +397,12 @@ function BrowserTodaystockPage(){
                                     <InputField min="0" max="99" placeholder="0" type= 'Number' onChange={handleChangeNumOfStock} maxLength={2}></InputField>
                                     <BrowserTextBox Width='15%' Height=' ' FontSize='1rem' FontColor='' Isbold={false} Justify="right" Left=' '>주</BrowserTextBox>
                                 </SelectBoxBottom>
-                                <KosButton onClick={buttonHandler}>BUY</KosButton>
+                                <KosButton onClick={buttonHandler}>매수</KosButton>
                             </StockContainer>
                             
                         </RightSide>
                     ):(
-                        <RightSide>Click "See more" button to see Candlestick chart</RightSide>
+                        <RightSide></RightSide>
                     )}
 
                 </StockContainer>     
