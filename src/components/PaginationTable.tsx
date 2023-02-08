@@ -73,8 +73,6 @@ export const PaginationTable = () => {
 
         const button: HTMLButtonElement = event.currentTarget;
         setIsClick(true);
-
-        alert('Button Clicked')
     };
 
     return (

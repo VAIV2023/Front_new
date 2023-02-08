@@ -92,7 +92,7 @@ const BrowserKosdakNumInfo = styled.div`
 
 
 
-
+    // (res) => console.log(res.data.response.body.items.item[0])
 
 function BrowserMainPage(){
     
