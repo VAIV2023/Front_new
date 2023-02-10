@@ -37,7 +37,7 @@ function DashboardNavBar({ isAdmin, onOpenSidebar }: IDashboardNavBar) {
           onClick={onOpenSidebar}
           sx={{ mr: 1, color: "text.primary", display: { lg: "none" } }}
         >
-          <Iconify icon="eva:menu-2-fill" />
+          <Iconify icon="ic:round-menu" />
         </IconButton>
 
         <Box sx={{ flexGrow: 1 }} />

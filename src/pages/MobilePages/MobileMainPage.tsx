@@ -1,14 +1,9 @@
-//import styled from 'styled-components';
 
-function MobileMainPage(){
+
+export default function MobileMainPage(){
     return(
         <>
-            모바일 접속zz
+            모바일 메인페이지입니다
         </>
-        
-            
-        
     );
 }
-
-export default MobileMainPage;

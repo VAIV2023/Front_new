@@ -5,7 +5,7 @@ import { Box, Link, Drawer, Typography, Avatar } from "@mui/material";
 import useResponsive from "../../hooks/useResponsive";
 import Scrollbar from "./Scrollbar";
 import NavSection from "./NavSection";
-import PortNavConfig from "../../config/PortNavConfig";
+import MobileNavConfig from "../../config/MobileNavConfig";
 import { useRecoilValue } from "recoil";
 //import { loggedInUserState } from "../../atoms/userAtom";
 //import { ColumnType, RoleType } from "../../types/common";
@@ -74,7 +74,7 @@ export default function DashboardSidebar({
         <Link
           underline="none"
           component={RouterLink}
-          to={`/portpolio/main`}
+          to={`/login`}
         >
           <AccountStyle>
             <Avatar src={account.photoURL} alt="" />
@@ -90,7 +90,7 @@ export default function DashboardSidebar({
         </Link>
       </Box>
 
-      <NavSection navConfig={PortNavConfig} />
+      <NavSection navConfig={MobileNavConfig} />
 
       <Box sx={{ flexGrow: 1 }} />
     </Scrollbar>
