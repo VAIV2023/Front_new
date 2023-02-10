@@ -6,7 +6,6 @@ import useResponsive from "../../hooks/useResponsive";
 import Scrollbar from "./Scrollbar";
 import NavSection from "./NavSection";
 import PortNavConfig from "../../config/PortNavConfig";
-import { useRecoilValue } from "recoil";
 //import { loggedInUserState } from "../../atoms/userAtom";
 //import { ColumnType, RoleType } from "../../types/common";
 
@@ -50,9 +49,9 @@ export default function DashboardSidebar({
   };
 
 
-
+  
   const isDesktop = useResponsive("up", "lg");
-
+  
 
 
   const renderContent = (

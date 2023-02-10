@@ -17,7 +17,7 @@ const MobileNavConfig = [
   },
   {
     title: "Today's Pick / 오늘의 종목",
-    path: "/todayspick",
+    path: "/todaystock",
     icon: getIcon("material-symbols:fact-check-outline-rounded"),
   },
   {

@@ -6,7 +6,9 @@ import useResponsive from "../../hooks/useResponsive";
 import Scrollbar from "./Scrollbar";
 import NavSection from "./NavSection";
 import MobileNavConfig from "../../config/MobileNavConfig";
-import { useRecoilValue } from "recoil";
+import { isLoggedInState } from "../../atoms/LoginAtom";
+import { useRecoilState} from "recoil";
+import { useNavigate } from "react-router-dom";
 //import { loggedInUserState } from "../../atoms/userAtom";
 //import { ColumnType, RoleType } from "../../types/common";
 
@@ -50,7 +52,7 @@ export default function DashboardSidebar({
   };
 
 
-
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
   const isDesktop = useResponsive("up", "lg");
 
 
@@ -80,10 +82,10 @@ export default function DashboardSidebar({
             <Avatar src={account.photoURL} alt="" />
             <Box sx={{ ml: 2 }}>
               <Typography variant="h5" sx={{ color: "#e0e7e9" }}>
-                {localStorage.getItem("nickname")}
+                {isLoggedIn? `${localStorage.getItem("nickname")}`:"로그인이 필요합니다"}
               </Typography>
               <Typography variant="subtitle1" sx={{ color: "#e0e7e9" }}>
-                {localStorage.getItem("id")}
+                {isLoggedIn? `${localStorage.getItem("id")}`:""}
               </Typography>
             </Box>
           </AccountStyle>

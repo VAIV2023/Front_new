@@ -89,14 +89,15 @@ function LoginBox() {
             setIsLoggedIn(true);
             axios.post(Login_URL,{ id: res.id })
             .then((response) => {
-              localStorage.setItem("id", res.id);
-              localStorage.setItem(
-                "nickname",
-                res.kakao_account.profile.nickname
-              );
               console.log(response);
-              navigate("/");
             }); 
+            localStorage.setItem("id", res.id);
+            localStorage.setItem(
+              "nickname",
+              res.kakao_account.profile.nickname
+            );
+            navigate("/");
+
 /*             console.log(res);
             console.log(res.kakao_account);
             console.log(res.kakao_account.email);

@@ -119,6 +119,8 @@ function Navigator(){
             window.Kakao.Auth.setAccessToken(undefined);
         }else{
             setIsLoggedIn(false);
+            localStorage.removeItem("id");
+            localStorage.removeItem("nickname");
             alert("로그아웃 되었습니다");
         }
         navigate("/");

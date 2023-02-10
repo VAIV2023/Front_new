@@ -39,7 +39,7 @@ function AppRouter() {
           <Route path="/" element={<MobilePage/>}> 
             <Route path="/" element={<MobileMainPage/>} />
             <Route path="about" element={<MobileAboutPage/>} />
-            <Route path="todayspick" element={<MobileTodayPickPage/>} />
+            <Route path="todaystock" element={<MobileTodayPickPage/>} />
             <Route path="backtest" element={<MobileBackTestPage/>} />
             <Route path="dashboard" element={<DashboardApp/>} />
             <Route path="account" element={<BrowserPortpolioAccount/>} />
