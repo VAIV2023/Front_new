@@ -1,22 +1,22 @@
 export const COLUMNS = [
     {
-        Header : 'Stock Name',
-        accessor : 'Stock_Name'
+        Header : '종목명',
+        accessor : '종목명'
     },
     {
-        Header : 'Ticker_no',
-        accessor : 'Ticker no'
+        Header : '지수명',
+        accessor : '지수명'
     },
     {
-        Header : 'Previous_Day_Closing_Price',
-        accessor : 'Previous Day Closing Price'
+        Header : '전날_종가',
+        accessor : '전날 종가'
     },
     {
-        Header : 'Day_to_Day_ratio',
-        accessor : 'Day to Day ratio'
+        Header : '등락률',
+        accessor : '등락률'
     },
     {
-        Header : 'Fluctuation_rate',
-        accessor : 'Fluctuation rate'
+        Header : '전일비',
+        accessor : '전일비'
     }
 ];

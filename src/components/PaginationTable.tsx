@@ -158,7 +158,7 @@ export const PaginationTable = ({ticker}:Tableprops) => {
                 {<td>{rate}</td>}
                 {
                   <td>
-                    <Button onClick={buttonHandler}>See More</Button>
+                    <Button onClick={buttonHandler}>더 보기</Button>
                   </td>
                 }
               </tr>

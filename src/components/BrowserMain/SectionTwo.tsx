@@ -165,7 +165,7 @@ function BrowserMainsectionTwo(){
                     ))}
                 </SectionStockPick>
                 <SectionStockPick Width = '35%'>
-                    <BrowserTextBox Width = '80%' Height='9vh' FontSize = "1.5rem" FontWeight = "bold" FontColor="#374054"  Justify='left' Border = {false}>KOSDAK 오늘의 종목</BrowserTextBox>
+                    <BrowserTextBox Width = '80%' Height='9vh' FontSize = "1.5rem" FontWeight = "bold" FontColor="#374054"  Justify='left' Border = {false}>KOSDAQ 오늘의 종목</BrowserTextBox>
                     {kosdakarr.map((element) =>(
                         <BrowserTextBoxWrapper Width ='100%'>
                             <BrowserTextBox Width = '30%' Height='6vh' FontSize = "" FontWeight = "bold" FontColor=""  Justify='left' Border = {true}>{element.name}</BrowserTextBox>
