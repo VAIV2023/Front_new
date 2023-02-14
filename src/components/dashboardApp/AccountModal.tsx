@@ -4,6 +4,8 @@ import moment from "moment";
 import { Dialog, DialogTitle ,DialogContent,Button, DialogActions, TextField } from "@mui/material";
 import { AccountListType } from "../../types/AccountListType";
 import { AccountListCurrent } from "../../atoms/PortPolioAtoms/AccountListAtom";
+import axios from "axios";
+import { BaseURL } from "../../data/BaseURL";
 
 interface ModalType {
     modalOpen: boolean;
@@ -20,7 +22,7 @@ export default function AccountModal({
     const [currentAccountList, setCurrentAccountList] = useRecoilState<AccountListType[]>(AccountListCurrent);
     const [accountName, setAccountName] = useState<string>("");
     
-
+    const create_URL = `${BaseURL}/createaccount`;
 
     const handleTextChange = (e : any) =>{
         setAccountName(e.target.value);
@@ -33,13 +35,17 @@ export default function AccountModal({
 
     const handleCreateAccount= () =>{
         if(validation() === false){
-            let result : AccountListType[] = [{id : 1, name:"", create:" "}];
             const today:string = moment(new Date()).format("YYYY-MM-DD");
+            const accountCode:string = today+"__"+accountName;
+            axios.post(create_URL,{id:Number(localStorage.getItem("id")), code:accountCode, name:accountName});
+            setModalOpen(false);
+
+/*             let result : AccountListType[] = [{id : 1, name:"", create:"", code:""}];
             const createName = accountName;
             result[0].name = today;
             result[0].create = createName;
             setCurrentAccountList(result);
-            setModalOpen(false);
+            setModalOpen(false); */
         }
     }
 

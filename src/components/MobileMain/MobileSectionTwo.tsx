@@ -42,6 +42,7 @@ function MobileMainsectionTwo(){
         }
     );
 
+
     // Create Array
     const kospiTickerList : string[] = [];
     const kosdaqTickerList : string[] = [];

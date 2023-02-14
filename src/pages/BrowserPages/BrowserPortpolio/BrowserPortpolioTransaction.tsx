@@ -37,7 +37,6 @@ export default function BrowserPortpolioTransaction(){
         {ticker: "006400", stockname: "삼성SDI", buy_date:"2023-01-31", buy_price: 685000, buy_total_price:1370000 , sell_date: "2023-02-08", sell_price:730000 ,sell_total_price:1460000 ,quantity:2, rate:7},
     ];
 
-    const userID = Number(localStorage.getItem("id"));
 /*     const {mutate} = useMutation(
         () => fetchAccount(userID),
         {
@@ -51,7 +50,7 @@ export default function BrowserPortpolioTransaction(){
     });
     //console.log(mutate); */
 
-    axios.post("http://3.37.180.191:5000/checkaccount",{id:2599175240}).then((res) => console.log(res)); 
+    
 
     return(
         <Container maxWidth="xl">

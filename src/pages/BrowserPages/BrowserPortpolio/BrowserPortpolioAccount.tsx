@@ -6,9 +6,7 @@ import {
     Container,
     Typography,
     Button,
-    CardHeader,
     Card,
-    Box,
   } from "@mui/material";
 
 import Iconify from "../../../components/Iconify";
@@ -17,7 +15,8 @@ import AccountList from "../../../components/dashboardApp/AccountList";
 import {AccountListSelected, AccountListCurrent } from "../../../atoms/PortPolioAtoms/AccountListAtom";
 import { AccountListType } from "../../../types/AccountListType";
 import AccountModal from "../../../components/dashboardApp/AccountModal";
-
+import axios from "axios";
+import { BaseURL } from "../../../data/BaseURL";
 
 function BrowserPortpolioAccount(){
 
@@ -26,6 +25,7 @@ function BrowserPortpolioAccount(){
     const [currentAccountList, setCurrentAccountList] = useRecoilState<AccountListType[]>(AccountListCurrent);
 
     const [modalOpen, setModalOpen] = useState<boolean>(false);
+    const delete_URL =`${BaseURL}/deleteaccount`;
 
     const handleRemoveCLick =() =>{
 
@@ -37,6 +37,9 @@ function BrowserPortpolioAccount(){
                 (item) => currentAccountList.filter((i) => i.id !== item.id).length > 0
             );
             setCurrentAccountList(currentAccount);
+            console.log(accountListSelected[0].code);
+            axios.post(delete_URL, {id:Number(localStorage.getItem("id")), code:accountListSelected[0].code});
+
         }
     }
 
