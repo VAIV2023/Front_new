@@ -20,6 +20,8 @@ import MobileMainPage from "./pages/MobilePages/MobileMainPage";
 import MobileAboutPage from "./pages/MobilePages/MobileAboutPage";
 import MobileTodayPickPage from "./pages/MobilePages/MobileTodayPickPage";
 import MobileBackTestPage from "./pages/MobilePages/MobileBackTestPage";
+import MobileLoginPage from "./pages/MobilePages/MobileLoginPage";
+
 
 import { isLoggedInState } from "./atoms/LoginAtom";
 import {isClicked} from "./atoms/ButtonAtom";
@@ -41,11 +43,11 @@ function AppRouter() {
             <Route path="about" element={<MobileAboutPage/>} />
             <Route path="todaystock" element={<MobileTodayPickPage/>} />
             <Route path="backtest" element={<MobileBackTestPage/>} />
-            <Route path="dashboard" element={<DashboardApp/>} />
-            <Route path="account" element={<BrowserPortpolioAccount/>} />
-            <Route path="transaction" element={<BrowserPortpolioTransaction/>} />
+            <Route path="dashboard" element={isLoggedIn? <DashboardApp/> : <Navigate replace to="/login" />} />
+            <Route path="account" element={isLoggedIn? <BrowserPortpolioAccount/> : <Navigate replace to="/login" />} />
+            <Route path="transaction" element={isLoggedIn? <BrowserPortpolioTransaction/> : <Navigate replace to="/login" />} />
           </Route>
-          <Route path="/login" element={isLoggedIn ? <Navigate replace to="/" /> : <BrowserLoginPage/>} />
+          <Route path="/login" element={isLoggedIn ? <Navigate replace to="/" /> : <MobileLoginPage/>} />
         </Routes>
       ) 
     }

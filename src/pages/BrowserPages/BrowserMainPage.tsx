@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import Navigator from '../../components/Navigator';
 import SectionImg2 from '../../assets/images/SectionImg3.png';
-import BrowserMainSectionTwo from '../../components/BrowserMain/SectionTwo';
-import BrowserMainSectionThree from '../../components/BrowserMain/SectionThree';
+import BrowserMainsectionTwo from '../../components/BrowserMain/SectionTwo';
+import BrowserMainsectionThree from '../../components/BrowserMain/SectionThree';
 import BrowserMainsectionFour from '../../components/BrowserMain/SectionFour';
 
 
@@ -90,9 +90,6 @@ function BrowserMainPage(){
     
     
 
-
-    
-
     return(
         <>
             <Navigator/>
@@ -111,8 +108,8 @@ function BrowserMainPage(){
                         </BrowserKosdakNumInfo>
                     </BrowserStockNumInfo>
                 </BrowserMainIntroContainer>
-                <BrowserMainSectionTwo/>
-                <BrowserMainSectionThree/>
+                <BrowserMainsectionTwo/>
+                <BrowserMainsectionThree/>
                 <BrowserMainsectionFour/>
                 
 

@@ -16,6 +16,7 @@ import { useMutation } from "react-query";
 import { fetchAccount } from "../../../fetch/fetchPortpolio/fetchAccount";
 import { HoldingStockType } from "../../../types/user_info";
 import { SellStockType } from "../../../types/user_info";
+import axios from 'axios';
 
 export default function BrowserPortpolioTransaction(){
 
@@ -36,8 +37,10 @@ export default function BrowserPortpolioTransaction(){
         {ticker: "006400", stockname: "삼성SDI", buy_date:"2023-01-31", buy_price: 685000, buy_total_price:1370000 , sell_date: "2023-02-08", sell_price:730000 ,sell_total_price:1460000 ,quantity:2, rate:7},
     ];
 
-
-    const {mutate} = useMutation(fetchAccount,{
+    const userID = Number(localStorage.getItem("id"));
+/*     const {mutate} = useMutation(
+        () => fetchAccount(userID),
+        {
         onSuccess: (data) => {
             console.log(data);
         },
@@ -46,7 +49,9 @@ export default function BrowserPortpolioTransaction(){
             alert(error.response.data.error);
         },
     });
-    console.log(mutate);
+    //console.log(mutate); */
+
+    axios.post("http://3.37.180.191:5000/checkaccount",{id:2599175240}).then((res) => console.log(res)); 
 
     return(
         <Container maxWidth="xl">

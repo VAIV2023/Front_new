@@ -24,51 +24,54 @@ declare global {
 
 const LoginBoxContainer = styled.div`
   display: flex;
-  display: flex;
   flex-direction: column;
   background-color: #f7f7f7;
-  width: 40vw;
+  width: 90%;
   height: 36vh;
   border-radius: 1vw;
   box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.5);
 `;
 
-const LogoContainer = styled.div`
-  height: 18vh;
-  width: 40vw;
-  flex-direction: column;
-  padding-bottom: 2.5vh;
-`;
 
 const VaivImageContainer = styled.div`
   display: flex;
-  height: 13vh;
-  justify-content: center;
-  padding-top: 3vh;
-  padding-bottom: 2vh;
+  height: 8vh;
+  width: 50vw;
+  margin-left: 20vw;
+  margin-top: 3vh;
+  background-image: url(${vaiv_logo});
+  background-repeat: no-repeat;
+  background-size: 50vw 8vh;
 `;
 const SkkuImageContainer = styled.div`
   display: flex;
   height: 4vh;
-  padding-left: 1vw;
-  padding-top: 1vh;
+  width: 20vw;
+  margin-left: 2vw;
+  margin-top: 1vh;
+  background-image: url(${skku_logo});
+  background-repeat: no-repeat;
+  background-size: 20vw 4vh;
 `;
-interface IKakaoImageContainer {
-  isMouse: boolean;
-}
 
-const KakaoImageContainer = styled.div<IKakaoImageContainer>`
+
+const KakaoImageContainer = styled.div`
   display: flex;
-  height: ${(props) => (props.isMouse ? "12.2vh" : "12vh")};
-  justify-content: center;
-  padding-top: 2vh;
-  padding-bottom: 2vh;
+  height: 7vh;
+  width: 70vw;
+  margin-left: 10vw;
+  margin-top: 5vh;
+  background-image: url(${btn_login_kakao});
+  background-repeat: no-repeat;
+  background-size: 70vw 7vh;
   cursor: pointer;
 `;
 
-function LoginBox() {
+
+
+
+function MobileLoginBox() {
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
-  const [isOnMouse, setIsOnMouse] = useState(false);
   const [userId, setUserId] = useRecoilState(userID);
   const navigate = useNavigate();
 
@@ -139,36 +142,19 @@ function LoginBox() {
     });
   }
 
-  const handleOnMouse = () => {
-    setIsOnMouse(true);
-  };
 
-  const handleOutMouse = () => {
-    setIsOnMouse(false);
-  };
 
   return (
     <LoginBoxContainer>
-      <LogoContainer>
-        <SkkuImageContainer>
-          <img src={skku_logo}></img>
-        </SkkuImageContainer>
-        <VaivImageContainer>
-          <img src={vaiv_logo}></img>
-        </VaivImageContainer>
-      </LogoContainer>
-      <LogoContainer>
-        <KakaoImageContainer
-          isMouse={isOnMouse}
-          onClick={() => handleKakaoLogin()}
-          onMouseOver={() => handleOnMouse()}
-          onMouseOut={() => handleOutMouse()}
-        >
-          <img src={btn_login_kakao}></img>
-        </KakaoImageContainer>
-      </LogoContainer>
+        <SkkuImageContainer></SkkuImageContainer>
+
+          <VaivImageContainer></VaivImageContainer>
+
+
+          <KakaoImageContainer onClick={() => handleKakaoLogin()}></KakaoImageContainer>  
+
     </LoginBoxContainer>
   );
 }
 
-export default LoginBox;
+export default MobileLoginBox;

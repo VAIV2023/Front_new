@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-
+import { useQuery } from 'react-query';
+import { fetchTodaysPick } from '../../fetch/fetchTodaysPick';
+import { TodaysPickType} from '../../types/TodaysPickType';
+import ToadaysPickRow from './TodaysPickRow';
 interface ISection{
     Color?: string;
     Height?: string;
 }
+
+
 const SectionContainer = styled.div<ISection>`
     display:flex;
     flex-direction: column;
@@ -83,12 +88,6 @@ const SectionStockPick = styled.div<IStockPick>`
     align-items: center;
 `
 
-const BrowserTextBoxWrapper = styled.div<IStockPick>`
-    display: flex;
-    width: ${(props)=> props.Width};
-    height: 6vh;
-    justify-content: center;
-`
 
 interface IText{
     FontSize: string;
@@ -112,32 +111,56 @@ const BrowserTextBox = styled.div<IText>`
     border-bottom: ${(props) => props.Border? "1px solid #EEEEEE" : ""};
 `
 
-interface TodaysPick{
-    name: string;
-    price: number;
-    ratio: string;
-    direction: string;
-}
 
 
 function BrowserMainsectionTwo(){
     const navigate = useNavigate();
 
-    const kospiarr : TodaysPick[] = [
-        {name: "삼성전자", price: 63800, ratio: '+0.74', direction: 'red'},
-        {name: "삼성SDI", price: 672000, ratio: '+3.54', direction: 'red'},
-        {name: "삼성물산", price: 119600, ratio: '+0.67', direction: 'red'},
-        {name: "현대자동차", price: 175100, ratio: '+5.67', direction: 'red'},
-        {name: "카카오", price: 62600, ratio: '0.00', direction: 'blue'}
-    ];
 
-    const kosdakarr : TodaysPick[] = [
-        {name: "새빗켐", price: 89500, ratio: '+7.06', direction: 'red'},
-        {name: "에프에스티", price: 23000, ratio: '+7.73', direction: 'red'},
-        {name: "대성하이텍", price: 9680, ratio: '+6.96', direction: 'red'},
-        {name: "알체라", price: 11300, ratio: '-15.55', direction: 'blue'},
-        {name: "에코프로", price: 7200, ratio: '+6.13', direction: 'red'}
-    ];
+    const {data:today} = useQuery<TodaysPickType>(
+        "todayspick",
+        () =>  fetchTodaysPick(),
+        {
+            onSuccess: (data) => {
+              //console.log(data);
+            },
+            onError: (error: any) => {
+              alert(error.response.data.error);
+            },
+        }
+    );
+
+    // Create Array
+    const kospiTickerList : string[] = [];
+    const kosdaqTickerList : string[] = [];
+    let kospirow =0;
+    let kosdaqrow =0;
+
+    today?.KOSDAQ.forEach(element => {
+        kosdaqTickerList.push(element.ticker);
+        kosdaqrow++;
+    });
+
+    today?.KOSPI.forEach(element => {
+        kospiTickerList.push(element.ticker);
+        kospirow++;
+    });
+    let kospiarr :string[]=[];
+    let kosdaqarr : string[]=[];
+    
+    if(kospirow>5){
+        kospiarr = kospiTickerList.slice(0,5);
+    }else{
+        kospiarr = kospiTickerList;
+    }
+    if(kosdaqrow>5){
+        kosdaqarr = kosdaqTickerList.slice(0,5);
+    }else{
+        kosdaqarr = kosdaqTickerList;
+    }
+
+
+    
 
     function handleClickbutton(){
         navigate("/todaystock");
@@ -156,25 +179,14 @@ function BrowserMainsectionTwo(){
                 <SectionStockPick Width = '35%'>
                     <BrowserTextBox Width = '80%' Height='9vh' FontSize = "1.5rem" FontWeight = "bold" FontColor="#374054"  Justify='left' Border = {false}>KOSPI 오늘의 종목</BrowserTextBox>
                     {kospiarr.map((element) =>(
-                        <BrowserTextBoxWrapper Width ='100%'>
-                            <BrowserTextBox Width = '30%' Height='6vh' FontSize = "" FontWeight = "bold" FontColor=""  Justify='left' Border = {true}>{element.name}</BrowserTextBox>
-                            <BrowserTextBox Width = '30%' Height='6vh' FontSize = "" FontWeight = "" FontColor={element.direction}  Justify='right' Border = {true}>{element.price} KRW</BrowserTextBox>
-                            <BrowserTextBox Width = '20%' Height='6vh' FontSize = "" FontWeight = "" FontColor={element.direction}  Justify='right' Border = {true}>{element.ratio}%</BrowserTextBox>
-                        </BrowserTextBoxWrapper>
-
+                        <ToadaysPickRow ticker = {element}></ToadaysPickRow>
                     ))}
                 </SectionStockPick>
                 <SectionStockPick Width = '35%'>
                     <BrowserTextBox Width = '80%' Height='9vh' FontSize = "1.5rem" FontWeight = "bold" FontColor="#374054"  Justify='left' Border = {false}>KOSDAQ 오늘의 종목</BrowserTextBox>
-                    {kosdakarr.map((element) =>(
-                        <BrowserTextBoxWrapper Width ='100%'>
-                            <BrowserTextBox Width = '30%' Height='6vh' FontSize = "" FontWeight = "bold" FontColor=""  Justify='left' Border = {true}>{element.name}</BrowserTextBox>
-                            <BrowserTextBox Width = '30%' Height='6vh' FontSize = "" FontWeight = "" FontColor={element.direction}  Justify='right' Border = {true}>{element.price} KRW</BrowserTextBox>
-                            <BrowserTextBox Width = '20%' Height='6vh' FontSize = "" FontWeight = "" FontColor={element.direction}  Justify='right' Border = {true}>{element.ratio}%</BrowserTextBox>
-                        </BrowserTextBoxWrapper>
-
+                    {kosdaqarr.map((element) =>(
+                        <ToadaysPickRow ticker = {element}></ToadaysPickRow>
                     ))}
-
                 </SectionStockPick>
             </SectionStockPickContainer>
         </SectionContainer>

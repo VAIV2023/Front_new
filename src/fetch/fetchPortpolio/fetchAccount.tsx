@@ -3,9 +3,6 @@ import { BaseURL } from '../../data/BaseURL';
 
 const account_URL = `${BaseURL}/checkaccount`
 
-export const fetchAccount = () =>
-    axios.post(account_URL,{
-        params: {
-            id: Number(localStorage.getItem("id")),
-        },
-    }).then((res) => console.log(res.data));   
+export const fetchAccount = (userId:number | null) =>
+    axios.post(account_URL, {id: userId})
+    .then((res) => res.data);   

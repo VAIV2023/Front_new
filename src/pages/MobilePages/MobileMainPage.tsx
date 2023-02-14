@@ -17,6 +17,7 @@ const MobileMainIntroContainer = styled.div`
     height: 40vh;
     z-index: 1;
     position: relative;
+    
 
     &::after {
         content:'';

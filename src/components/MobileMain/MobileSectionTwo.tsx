@@ -5,6 +5,10 @@ import {
     Typography,
     Button,
   } from "@mui/material";
+import { useQuery } from 'react-query';
+import { fetchTodaysPick } from '../../fetch/fetchTodaysPick';
+import { TodaysPickType } from '../../types/TodaysPickType';
+import ToadaysPickRow from '../BrowserMain/TodaysPickRow';
 
 
 
@@ -16,66 +20,58 @@ const ButtonWrapper = styled.div`
     align-items: center;
     
 `
-interface IStockPick{
-    Width: string;
-}
 
 
-const MobileTextBoxWrapper = styled.div<IStockPick>`
-    display: flex;
-    width: ${(props)=> props.Width};
-    height: 6vh;
-    justify-content: center;
-`
 
-interface IText{
-    FontSize: string;
-    FontWeight: string;
-    FontColor: string;
-    Width: string;
-    Height: string;
-    Justify: string;
-    Border: boolean;
-}
 
-const MobileTextBox = styled.div<IText>`
-    display:flex;
-    width:${(props) => props.Width};
-    height:${(props) => props.Height};
-    font-size: ${(props) => props.FontSize};
-    font-weight: ${(props) => props.FontWeight};;
-    color: ${(props) => props.FontColor};
-    justify-content: ${(props) => props.Justify};
-    align-items: center;
-    border-bottom: ${(props) => props.Border? "1px solid #EEEEEE" : ""};
-`
 
-interface TodaysPick{
-    name: string;
-    price: number;
-    ratio: string;
-    direction: string;
-}
 
 
 function MobileMainsectionTwo(){
 
+    const {data:today} = useQuery<TodaysPickType>(
+        "todayspick",
+        () =>  fetchTodaysPick(),
+        {
+            onSuccess: (data) => {
+              //console.log(data);
+            },
+            onError: (error: any) => {
+              alert(error.response.data.error);
+            },
+        }
+    );
 
-    const kospiarr : TodaysPick[] = [
-        {name: "삼성전자", price: 63800, ratio: '+0.74', direction: 'red'},
-        {name: "삼성SDI", price: 672000, ratio: '+3.54', direction: 'red'},
-        {name: "삼성물산", price: 119600, ratio: '+0.67', direction: 'red'},
-        {name: "현대자동차", price: 175100, ratio: '+5.67', direction: 'red'},
-        {name: "카카오", price: 62600, ratio: '0.00', direction: 'blue'}
-    ];
+    // Create Array
+    const kospiTickerList : string[] = [];
+    const kosdaqTickerList : string[] = [];
+    let kospirow =0;
+    let kosdaqrow =0;
 
-    const kosdakarr : TodaysPick[] = [
-        {name: "새빗켐", price: 89500, ratio: '+7.06', direction: 'red'},
-        {name: "에프에스티", price: 23000, ratio: '+7.73', direction: 'red'},
-        {name: "대성하이텍", price: 9680, ratio: '+6.96', direction: 'red'},
-        {name: "알체라", price: 11300, ratio: '-15.55', direction: 'blue'},
-        {name: "에코프로", price: 7200, ratio: '+6.13', direction: 'red'}
-    ];
+    today?.KOSDAQ.forEach(element => {
+        kosdaqTickerList.push(element.ticker);
+        kosdaqrow++;
+    });
+
+    today?.KOSPI.forEach(element => {
+        kospiTickerList.push(element.ticker);
+        kospirow++;
+    });
+    let kospiarr :string[]=[];
+    let kosdaqarr : string[]=[];
+    
+    if(kospirow>5){
+        kospiarr = kospiTickerList.slice(0,5);
+    }else{
+        kospiarr = kospiTickerList;
+    }
+    if(kosdaqrow>5){
+        kosdaqarr = kosdaqTickerList.slice(0,5);
+    }else{
+        kosdaqarr = kosdaqTickerList;
+    }
+
+
 
 
     return(
@@ -83,23 +79,13 @@ function MobileMainsectionTwo(){
             <Grid item xs={12} sm={6} sx ={{pb:3}}>
                 <Typography variant='h4' align='left' sx ={{pl:5, pb:1, color:"#374054"}}>KOSPI 오늘의 종목</Typography>
                 {kospiarr.map((element) =>(
-                        <MobileTextBoxWrapper Width ='100%'>
-                            <MobileTextBox Width = '30%' Height='6vh' FontSize = "" FontWeight = "bold" FontColor=""  Justify='left' Border = {true}>{element.name}</MobileTextBox>
-                            <MobileTextBox Width = '30%' Height='6vh' FontSize = "" FontWeight = "" FontColor={element.direction}  Justify='right' Border = {true}>{element.price} KRW</MobileTextBox>
-                            <MobileTextBox Width = '20%' Height='6vh' FontSize = "" FontWeight = "" FontColor={element.direction}  Justify='right' Border = {true}>{element.ratio}%</MobileTextBox>
-                        </MobileTextBoxWrapper>
-
+                    <ToadaysPickRow ticker ={element}></ToadaysPickRow>
                 ))}
             </Grid>
             <Grid item xs={12} sm={6} sx ={{pb:3}}>
                 <Typography variant='h4' align='left' sx ={{pl:5, pb:1, color:"#374054"}}>KOSDAK 오늘의 종목</Typography>
-                    {kosdakarr.map((element) =>(
-                        <MobileTextBoxWrapper Width ='100%'>
-                            <MobileTextBox Width = '30%' Height='6vh' FontSize = "" FontWeight = "bold" FontColor=""  Justify='left' Border = {true}>{element.name}</MobileTextBox>
-                            <MobileTextBox Width = '30%' Height='6vh' FontSize = "" FontWeight = "" FontColor={element.direction}  Justify='right' Border = {true}>{element.price} KRW</MobileTextBox>
-                            <MobileTextBox Width = '20%' Height='6vh' FontSize = "" FontWeight = "" FontColor={element.direction}  Justify='right' Border = {true}>{element.ratio}%</MobileTextBox>
-                        </MobileTextBoxWrapper>
-
+                    {kosdaqarr.map((element) =>(
+                        <ToadaysPickRow ticker ={element}></ToadaysPickRow>
                     ))}
             </Grid>
             <Grid item xs={12} sm={12} alignItems="center">
