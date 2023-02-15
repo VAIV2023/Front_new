@@ -6,7 +6,7 @@ export const fetchApexChart = (ticker: string) =>
     axios.get(EndPoint, {
         params: {
             serviceKey: `${AuthKEY}`,
-            numOfRows: '5',
+            numOfRows: '20',
             pageNo: '1',
             resultType: 'json',
             likeIsinCd: `${ticker}`

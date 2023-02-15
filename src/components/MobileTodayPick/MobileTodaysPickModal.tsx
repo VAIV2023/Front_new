@@ -17,17 +17,17 @@ export default function MobileTodaysPickModal(){
     const [isModalOpen, setIsModalOpen]= useRecoilState(TodaysPickModalOpen);
     const [nowTicker, setNowTicker]= useRecoilState(NowTicker);
     const [nowStockName, setNowStockName]= useRecoilState(NowModalStock);
-    const [chartData,setChartData] = useState<KrxStockType[]>([]);
+    
 
     
     
     
-/*     const { data:RawData } = useQuery<KrxStockType[]>(
-        `${nowTicker}`,
+     const { data:RawData } = useQuery<KrxStockType[]>(
+        `${nowTicker}Apex`,
         () => fetchApexChart(nowTicker),
         {
           onSuccess: (data) => {
-            //console.log(data);
+            console.log(data);
             //Setfetch(true);
           },
           onError: (error: any) => {
@@ -39,7 +39,7 @@ export default function MobileTodaysPickModal(){
     const chartData : KrxStockType[]= [];
     RawData?.forEach((element) => {
         chartData.push(element);
-    });  */ 
+    });   
 
     return(
 
@@ -56,9 +56,8 @@ export default function MobileTodaysPickModal(){
                     series={[
                          {
                             data: 
-
                             chartData.map((element)=>{
-                                    const xDate:string = element.basdt.slice(0,4) +"-" + element.basdt.slice(4,6) +"-" +element.basdt.slice(6)
+                                    const xDate:string = element.basDt.slice(0,4) +"-" + element.basDt.slice(4,6) +"-" +element.basDt.slice(6)
                                     return {x:new Date(xDate), y:[element.mkp, element.hipr, element.lopr, element.clpr]}
                                 }),
                         }, 
@@ -81,7 +80,21 @@ export default function MobileTodaysPickModal(){
                           width: 2,
                         },
                         yaxis: {
-                            show: false,
+                            show: true,
+                            labels: {
+                              style: {
+                                colors: '#1f1e1e'
+                              }
+                            }
+                        },
+                        xaxis: {
+                          type: "datetime",
+                          categories: chartData.map((element) => element.basDt),
+                          labels: {
+                            style: {
+                              colors: '#1f1e1e'
+                            }
+                          }
                         },
                         plotOptions: {
                             candlestick: {

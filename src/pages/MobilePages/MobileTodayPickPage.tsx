@@ -123,15 +123,15 @@ export default function MobileTodayPickPage(){
                 </MobileTextBoxWrapper>
                 {isKospi?(
                     kospiTickerList.map((element:string) =>(
-                        <MobileTodaysPickRow ticker ={element}></MobileTodaysPickRow>
+                        <MobileTodaysPickRow key={element} ticker ={element}></MobileTodaysPickRow>
                     ))
                 ):(
                     kosdaqTickerList.map((element:string) =>(
-                        <MobileTodaysPickRow ticker ={element}></MobileTodaysPickRow>
+                        <MobileTodaysPickRow key={element} ticker ={element}></MobileTodaysPickRow>
                     ))
                 )}            
             </Box>
-            {/* <MobileTodaysPickModal/> */}
+            <MobileTodaysPickModal/>
         </Container>
     );
 }

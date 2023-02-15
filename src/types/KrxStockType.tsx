@@ -1,5 +1,5 @@
 export interface KrxStockType {
-    basdt: string; //기준 날짜
+    basDt: string; //기준 날짜
     clpr : string; // 종가
     fltRt: string; // 전일대비 등락 비율
     hipr : string; // 고가

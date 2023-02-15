@@ -86,15 +86,15 @@ export default function MobileMainPage(){
                 <Typography variant="h4" sx={{ mb: 5, color: "white" }}>
                     연 50%의 수익률을 보장하는 로보어드바이저
                 </Typography>
-                <MobileTextBox FontSize='0.7em' FontColor='#37383B' Width= '95%' Height = '8vh' Isbold = {true} Align ={false}>자동화된 시스템으로 편리한 사용환경을 제공합니다</MobileTextBox>
+                <MobileTextBox FontSize='0.7em' FontColor='#0e0d0dee' Width= '95%' Height = '8vh' Isbold = {true} Align ={false}>자동화된 시스템으로 편리한 사용환경을 제공합니다</MobileTextBox>
                 <MobileStockNumInfo>
                     <MobileKospiNumInfo>
                         <MobileTextBox FontSize='1.5em' FontColor='blue' Width= '10vw' Height = '9vh' Isbold = {true} Align ={true}>968</MobileTextBox>
-                        <MobileTextBox FontSize='0.7em' FontColor='#6f6f6fef' Width= '10vw' Height = '6vh' Isbold = {false} Align ={false}>Kospi</MobileTextBox>
+                        <MobileTextBox FontSize='0.7em' FontColor='#0e0d0dee' Width= '10vw' Height = '6vh' Isbold = {false} Align ={false}>Kospi</MobileTextBox>
                     </MobileKospiNumInfo>
                     <MobileKosdakNumInfo>
-                        <MobileTextBox FontSize='1.5em' FontColor='darkblue' Width= '10vw' Height = '9vh' Isbold = {true} Align ={true}>1500</MobileTextBox>
-                        <MobileTextBox FontSize='0.7em' FontColor='#6f6f6fef' Width= '10vw' Height = '6vh' Isbold = {false} Align ={false}>Kosdak</MobileTextBox>
+                        <MobileTextBox FontSize='1.5em' FontColor='darkblue' Width= '10vw' Height = '9vh' Isbold = {true} Align ={true}>1595</MobileTextBox>
+                        <MobileTextBox FontSize='0.7em' FontColor='#0e0d0dee' Width= '10vw' Height = '6vh' Isbold = {false} Align ={false}>Kosdak</MobileTextBox>
                     </MobileKosdakNumInfo>
                 </MobileStockNumInfo>
             </MobileMainIntroContainer>  
