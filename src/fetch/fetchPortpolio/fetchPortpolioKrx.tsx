@@ -6,7 +6,7 @@ export const fetchKrx = (ticker: string) =>
     axios.get(EndPoint, {
         params: {
             serviceKey: `${AuthKEY}`,
-            numOfRows: '5',
+            numOfRows: '1',
             pageNo: '1',
             resultType: 'json',
             likeIsinCd: `${ticker}`
