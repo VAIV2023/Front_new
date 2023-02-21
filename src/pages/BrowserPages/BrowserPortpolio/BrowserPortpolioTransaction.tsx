@@ -12,14 +12,17 @@ import TransactionCardSell from "../../../components/dashboardApp/TransactionCar
 import TransactionCardHolding from "../../../components/dashboardApp/TransactionCardHolding";
 import Iconify from "../../../components/Iconify";
 import { Link as RouterLink } from "react-router-dom";
-import { useMutation } from "react-query";
-import { fetchAccount } from "../../../fetch/fetchPortpolio/fetchAccount";
+import { useRecoilState } from "recoil";
+import { AccountListCurrent } from "../../../atoms/PortPolioAtoms/AccountListAtom";
+import { AccountListType } from "../../../types/AccountListType";
 import { HoldingStockType } from "../../../types/user_info";
 import { SellStockType } from "../../../types/user_info";
-import axios from 'axios';
+import { fetchStart } from "../../../fetch/fetchPortpolio/fetchStart";
+
 
 export default function BrowserPortpolioTransaction(){
 
+    const [currentAccountList, setCurrentAccountList] = useRecoilState<AccountListType[]>(AccountListCurrent);
     const codelist :string[] = ["000250","005930"];
     const selllist : string[] = ["035720","006400"];
     const holdingStockList : HoldingStockType[] = [
@@ -36,6 +39,23 @@ export default function BrowserPortpolioTransaction(){
         {ticker: "035720", stockname: "카카오", buy_date:"2023-01-31", buy_price: 61400, buy_total_price:1964800 , sell_date: "2023-02-08", sell_price:69100 ,sell_total_price:2211200 ,quantity:32, rate:13},
         {ticker: "006400", stockname: "삼성SDI", buy_date:"2023-01-31", buy_price: 685000, buy_total_price:1370000 , sell_date: "2023-02-08", sell_price:730000 ,sell_total_price:1460000 ,quantity:2, rate:7},
     ];
+
+    const handleClickStart =() =>{
+        if(currentAccountList.length === 0){
+            alert("계좌를 생성해야 합니다!")
+        }else{
+            fetchStart(Number(localStorage.getItem("id")), currentAccountList[0].code)
+            .then((res)=>{
+                if(res.data.success === 0){
+                    alert("이미 매매가 진행중입니다!");
+                }else if(res.data.success === 1){
+                    alert("매매가 시작되었습니다");
+                }else{
+                    alert("거래일이 아닙니다!");
+                }
+            });    
+        }
+    }
 
 /*     const {mutate} = useMutation(
         () => fetchAccount(userID),
@@ -79,6 +99,7 @@ export default function BrowserPortpolioTransaction(){
                         to="#"
                         color="success"
                         startIcon={<Iconify icon="mdi:reload" />}
+                        onClick={handleClickStart}
                     >
                         매매 시작
                     </Button>
@@ -92,8 +113,8 @@ export default function BrowserPortpolioTransaction(){
             
             <Grid container spacing={3} sx = {{mt: 5, mb:5}}>
                 {holdingStockList.map((element) => (
-                    <Grid item xs={12} sm={6} lg={4}>
-                        <TransactionCardHolding stockData ={element}/>
+                    <Grid item key={element.ticker} xs={12} sm={6} lg={4}>
+                        <TransactionCardHolding key={element.ticker} stockData ={element}/>
                     </Grid>
                 ))} 
             </Grid>
@@ -106,8 +127,8 @@ export default function BrowserPortpolioTransaction(){
 
             <Grid container spacing={3} sx = {{mt: 5}}>
                 {sellStockList.map((element) => (
-                    <Grid item xs={12} sm={6} lg={4}>
-                        <TransactionCardSell stockData ={element}/>
+                    <Grid item key={element.ticker} xs={12} sm={6} lg={4}>
+                        <TransactionCardSell key={element.ticker} stockData ={element}/>
                     </Grid>
                 ))} 
             </Grid>

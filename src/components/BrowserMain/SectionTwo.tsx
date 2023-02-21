@@ -179,13 +179,13 @@ function BrowserMainsectionTwo(){
                 <SectionStockPick Width = '35%'>
                     <BrowserTextBox Width = '80%' Height='9vh' FontSize = "1.5rem" FontWeight = "bold" FontColor="#374054"  Justify='left' Border = {false}>KOSPI 오늘의 종목</BrowserTextBox>
                     {kospiarr.map((element) =>(
-                        <ToadaysPickRow ticker = {element}></ToadaysPickRow>
+                        <ToadaysPickRow key={element} ticker = {element}></ToadaysPickRow>
                     ))}
                 </SectionStockPick>
                 <SectionStockPick Width = '35%'>
                     <BrowserTextBox Width = '80%' Height='9vh' FontSize = "1.5rem" FontWeight = "bold" FontColor="#374054"  Justify='left' Border = {false}>KOSDAQ 오늘의 종목</BrowserTextBox>
                     {kosdaqarr.map((element) =>(
-                        <ToadaysPickRow ticker = {element}></ToadaysPickRow>
+                        <ToadaysPickRow key={element} ticker = {element}></ToadaysPickRow>
                     ))}
                 </SectionStockPick>
             </SectionStockPickContainer>

@@ -4,10 +4,7 @@ import SectionImg2 from '../../assets/images/SectionImg3.png';
 import BrowserMainsectionTwo from '../../components/BrowserMain/SectionTwo';
 import BrowserMainsectionThree from '../../components/BrowserMain/SectionThree';
 import BrowserMainsectionFour from '../../components/BrowserMain/SectionFour';
-import { useQuery } from 'react-query';
-import { fetchApexChart } from '../../fetch/fetchApexChart';
-import { KrxStockType } from '../../types/KrxStockType';
-import ReactApexChart from "react-apexcharts";
+
 
 const BrowserMainContainer = styled.div`
     height:100%;
@@ -90,20 +87,8 @@ const BrowserKosdakNumInfo = styled.div`
    
 
 function BrowserMainPage(){
-    const { data ,isLoading} = useQuery<KrxStockType[]>(
-        `000250`,
-        () => fetchApexChart(`000250`),
-        {
-          onSuccess: (data) => {
-            console.log(data);
-
-          },
-          onError: (error: any) => {
-            alert(error.response.data.error);
-          },
-        }
-    ); 
-
+    
+    
 
     return(
         <>

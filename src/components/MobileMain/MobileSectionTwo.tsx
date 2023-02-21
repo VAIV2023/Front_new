@@ -34,7 +34,7 @@ function MobileMainsectionTwo(){
         () =>  fetchTodaysPick(),
         {
             onSuccess: (data) => {
-              //console.log(data);
+              console.log(data);
             },
             onError: (error: any) => {
               alert(error.response.data.error);
@@ -80,13 +80,13 @@ function MobileMainsectionTwo(){
             <Grid item xs={12} sm={6} sx ={{pb:3}}>
                 <Typography variant='h4' align='left' sx ={{pl:5, pb:1, color:"#374054"}}>KOSPI 오늘의 종목</Typography>
                 {kospiarr.map((element) =>(
-                    <ToadaysPickRow ticker ={element}></ToadaysPickRow>
+                    <ToadaysPickRow key={element} ticker ={element}></ToadaysPickRow>
                 ))}
             </Grid>
             <Grid item xs={12} sm={6} sx ={{pb:3}}>
                 <Typography variant='h4' align='left' sx ={{pl:5, pb:1, color:"#374054"}}>KOSDAK 오늘의 종목</Typography>
                     {kosdaqarr.map((element) =>(
-                        <ToadaysPickRow ticker ={element}></ToadaysPickRow>
+                        <ToadaysPickRow key={element} ticker ={element}></ToadaysPickRow>
                     ))}
             </Grid>
             <Grid item xs={12} sm={12} alignItems="center">
@@ -102,5 +102,4 @@ function MobileMainsectionTwo(){
         </Grid>
     );
 }
-
 export default MobileMainsectionTwo;
