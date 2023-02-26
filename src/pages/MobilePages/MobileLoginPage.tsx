@@ -9,7 +9,6 @@ const MobileLoginPageConatiner = styled.div`
     align-items: center;
     height: 100%;
 `
-
 function MobileLoginPage(){
     return(
         <>      

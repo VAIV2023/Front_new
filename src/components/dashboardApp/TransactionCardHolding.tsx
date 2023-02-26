@@ -11,6 +11,7 @@ import {
     CardActions,
   } from "@mui/material";
 
+import { isMobile } from 'react-device-detect';
 import { useQuery } from "react-query";
 import { fetchKrx } from "../../fetch/fetchPortpolio/fetchPortpolioKrx";
 import { KrxStockType } from "../../types/KrxStockType";
@@ -52,22 +53,22 @@ export default function TransactionCardHolding({stockData}:CardType){
         >
             <CardHeader title = {stockData.stockname} sx={{fontWeight : "bold" , fontSize:"1.5rem" }}/>
             <CardContent>
-              <Typography variant="body1" component="p" sx={{  fontWeight:"bold",pl:1, fontSize:"1.2rem" }}>
-                매수일 : {stockData.buy_date}
+              <Typography variant="body1" component="p" sx={isMobile? {fontWeight:"bold",pl:1, fontSize: "0.9rem" } :{  fontWeight:"bold",pl:1, fontSize: "1.2rem" }}>  
+                매수일 :<br/>{stockData.buy_date}
               </Typography>
-              <Typography variant="body1" component="p" sx={{  fontWeight:"bold", pt:2, pl:1, fontSize:"1.2rem" }}>
+              <Typography variant="body1" component="p" sx={isMobile? {fontWeight:"bold",pt:2,pl:1, fontSize: "0.9rem" } :{  fontWeight:"bold",pt:2,pl:1, fontSize: "1.2rem" }}>  
                 매수가 : {stockData.buy_price}
               </Typography>
-              <Typography variant="body1" component="p" sx={{  fontWeight:"bold", pt:2, pl:1, fontSize:"1.2rem" }}>
+              <Typography variant="body1" component="p" sx={isMobile? {fontWeight:"bold",pt:2,pl:1, fontSize: "0.9rem" } :{  fontWeight:"bold",pt:2,pl:1, fontSize: "1.2rem" }}>  
                 총매수 : {stockData.buy_total_price}
               </Typography>
-              <Typography variant="body1" component="p" sx={{  fontWeight:"bold", pt:2, pl:1, fontSize:"1.2rem" }}>
+              <Typography variant="body1" component="p" sx={isMobile? {fontWeight:"bold",pt:2,pl:1, fontSize: "0.9rem" } :{  fontWeight:"bold",pt:2,pl:1, fontSize: "1.2rem" }}>  
                 전일종가 : {currentPrice?.clpr}
               </Typography>
-              <Typography variant="body1" component="p" sx={{  fontWeight:"bold", pt:2, pl:1, fontSize:"1.2rem" }}>
+              <Typography variant="body1" component="p" sx={isMobile? {fontWeight:"bold",pt:2,pl:1, fontSize: "0.9rem" } :{  fontWeight:"bold",pt:2,pl:1, fontSize: "1.2rem" }}>  
                 총평가 : {Number(currentPrice?.clpr) * stockData.quantity}
               </Typography>
-              <Typography variant="body1" component="p" sx={{  fontWeight:"bold", pt:2, pl:1, fontSize:"1.2rem" }}>
+              <Typography variant="body1" component="p" sx={isMobile? {fontWeight:"bold",pt:2,pl:1, fontSize: "0.9rem" } :{  fontWeight:"bold",pt:2,pl:1, fontSize: "1.2rem" }}>  
                 수량 : {stockData.quantity}
               </Typography>
             </CardContent>

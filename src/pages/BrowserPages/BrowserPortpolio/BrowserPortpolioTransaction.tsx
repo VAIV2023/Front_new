@@ -119,7 +119,7 @@ export default function BrowserPortpolioTransaction(){
             
             <Grid container spacing={3} sx = {{mt: 5, mb:5}}>
                 {holdingStockList.map((element) => (
-                    <Grid item key={element.ticker} xs={12} sm={6} lg={4}>
+                    <Grid item key={element.ticker} xs={6} sm={6} lg={4}>
                         <TransactionCardHolding key={element.ticker} stockData ={element}/>
                     </Grid>
                 ))} 
@@ -133,7 +133,7 @@ export default function BrowserPortpolioTransaction(){
 
             <Grid container spacing={3} sx = {{mt: 5}}>
                 {sellStockList.map((element) => (
-                    <Grid item key={element.ticker} xs={12} sm={6} lg={4}>
+                    <Grid item key={element.ticker} xs={6} sm={6} lg={4}>
                         <TransactionCardSell key={element.ticker} stockData ={element}/>
                     </Grid>
                 ))} 
