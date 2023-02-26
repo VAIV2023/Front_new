@@ -8,6 +8,8 @@ import { useState  } from "react";
 import { useRecoilState} from "recoil";
 import { isLoggedInState, userID } from "../atoms/LoginAtom";
 import { BaseURL } from '../data/BaseURL';
+import { AccountListType } from "../types/AccountListType";
+import { AccountListCurrent } from "../atoms/PortPolioAtoms/AccountListAtom";
 
 
 import {
@@ -71,8 +73,10 @@ function LoginBox() {
   const [isOnMouse, setIsOnMouse] = useState(false);
   const [userId, setUserId] = useRecoilState(userID);
   const navigate = useNavigate();
+  const [currentAccountList, setCurrentAccountList] = useRecoilState<AccountListType[]>(AccountListCurrent);
 
   const Login_URL = `${BaseURL}/login`;
+  const account_URL = `${BaseURL}/checkaccount`;
 
   /* 임시 주식 목록 생성 start */
   // 임시 생성
@@ -96,8 +100,18 @@ function LoginBox() {
               "nickname",
               res.kakao_account.profile.nickname
             );
+            axios.post(account_URL,{id:Number(localStorage.getItem("id"))})
+            .then((res)=>{
+              if(res.data.accounts.length===0){
+                setCurrentAccountList([]);
+                console.log("정보받아오기 실패");
+              }else{
+                const userAccount:AccountListType[] =[{id:1, name:res.data.accounts[0].name, create: res.data.accounts[0].createDate, code:res.data.accounts[0].code}]; 
+                setCurrentAccountList(userAccount);
+                console.log(userAccount);
+              }
+            });
             navigate("/"); 
-
 /*             console.log(res);
             console.log(res.kakao_account);
             console.log(res.kakao_account.email);

@@ -132,7 +132,7 @@ function Navigator(){
             <NavigatorImageContainer>
                 <NavigatorLogo onClick = {() => handleNavigatorClick(0)}></NavigatorLogo>
             </NavigatorImageContainer>
-            <NavigatorLinkBox Width = '8vw' onClick = {() => handleNavigatorClick(1)}>사용방법</NavigatorLinkBox>
+            {/* <NavigatorLinkBox Width = '8vw' onClick = {() => handleNavigatorClick(1)}>사용방법</NavigatorLinkBox> */}
             <NavigatorLinkBox Width = '8vw' onClick = {() => handleNavigatorClick(2)}>오늘의 종목</NavigatorLinkBox>
             <NavigatorLinkBox Width = '8vw' onClick = {() => handleNavigatorClick(3)}>백테스트</NavigatorLinkBox>
             <NavigatorLinkBox Width = '8vw' onClick = {() => handleNavigatorClick(4)}>포트폴리오</NavigatorLinkBox>

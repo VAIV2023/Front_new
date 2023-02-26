@@ -4,7 +4,12 @@ import SectionImg2 from '../../assets/images/SectionImg3.png';
 import BrowserMainsectionTwo from '../../components/BrowserMain/SectionTwo';
 import BrowserMainsectionThree from '../../components/BrowserMain/SectionThree';
 import BrowserMainsectionFour from '../../components/BrowserMain/SectionFour';
-
+import { fetchCheckStock } from '../../fetch/fetchPortpolio/fetchCheckStock';
+import { fetchDailyMarketValue } from '../../fetch/fetchPortpolio/fetchDailyMarketValue';
+import { fetchDailyRealProfit } from '../../fetch/fetchPortpolio/fetchDailyRealProfit';
+import { useRecoilState } from "recoil";
+import { AccountListCurrent } from "../../atoms/PortPolioAtoms/AccountListAtom";
+import { AccountListType } from "../../types/AccountListType";
 
 const BrowserMainContainer = styled.div`
     height:100%;
@@ -88,6 +93,11 @@ const BrowserKosdakNumInfo = styled.div`
 
 function BrowserMainPage(){
     
+    const [currentAccountList, setCurrentAccountList] = useRecoilState<AccountListType[]>(AccountListCurrent);
+
+    fetchCheckStock(2599175240, '2023-02-20__winter').then((res)=> console.log(res));
+    fetchDailyMarketValue(2599175240, '2023-02-20__winter').then((res)=> console.log(res));
+    fetchDailyRealProfit(2599175240, '2023-02-20__winter').then((res)=> console.log(res));
     
 
     return(

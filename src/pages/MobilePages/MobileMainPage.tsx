@@ -4,7 +4,12 @@ import MobileMainSectionTwo from '../../components/MobileMain/MobileSectionTwo';
 import MobileMainSectionThree from '../../components/MobileMain/MobileSectionThree';
 import MobileMainsectionFour from '../../components/MobileMain/MobileSectionFour';
 import { Typography } from "@mui/material";
-
+import { fetchCheckStock } from '../../fetch/fetchPortpolio/fetchCheckStock';
+import { fetchDailyMarketValue } from '../../fetch/fetchPortpolio/fetchDailyMarketValue';
+import { fetchDailyRealProfit } from '../../fetch/fetchPortpolio/fetchDailyRealProfit';
+import { useRecoilState } from "recoil";
+import { AccountListCurrent } from "../../atoms/PortPolioAtoms/AccountListAtom";
+import { AccountListType } from "../../types/AccountListType";
 
 
 
@@ -79,6 +84,10 @@ const MobileKosdakNumInfo = styled.div`
 
 
 export default function MobileMainPage(){
+    const [currentAccountList, setCurrentAccountList] = useRecoilState<AccountListType[]>(AccountListCurrent);
+
+    //fetchCheckStock(Number(localStorage.getItem("id")), currentAccountList[0].code);
+
     return(
         <>
 

@@ -72,12 +72,12 @@ export default function TransactionCardHolding({stockData}:CardType){
               </Typography>
             </CardContent>
             <CardActions sx={{pl:4}}>
-              <Button variant="contained" color="success">
+              {/* <Button variant="contained" color="success">
                 매수하기
               </Button>
               <Button variant="contained" color="error">
                 매도하기
-              </Button>
+              </Button> */}
             </CardActions>
         </Card>
     );

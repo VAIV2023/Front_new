@@ -18,6 +18,7 @@ import { AccountListType } from "../../../types/AccountListType";
 import { HoldingStockType } from "../../../types/user_info";
 import { SellStockType } from "../../../types/user_info";
 import { fetchStart } from "../../../fetch/fetchPortpolio/fetchStart";
+import { fetchEnd } from "../../../fetch/fetchPortpolio/fetchEnd";
 
 
 export default function BrowserPortpolioTransaction(){
@@ -57,18 +58,22 @@ export default function BrowserPortpolioTransaction(){
         }
     }
 
-/*     const {mutate} = useMutation(
-        () => fetchAccount(userID),
-        {
-        onSuccess: (data) => {
-            console.log(data);
-        },
-        onError: (error: any) => {
-            // console.log(error);
-            alert(error.response.data.error);
-        },
-    });
-    //console.log(mutate); */
+    const handleClickEnd =() =>{
+        if(currentAccountList.length === 0){
+            alert("계좌를 생성해야 합니다!")
+        }else{
+            fetchEnd(Number(localStorage.getItem("id")), currentAccountList[0].code)
+            .then((res)=>{
+                if(res.data.success === 1){
+                    alert("매매가 중지 되었습니다");
+                }else{
+                    alert("오류가 발생하였습니다!");
+                }
+            });    
+        }
+    }
+
+
 
     
 
@@ -90,6 +95,7 @@ export default function BrowserPortpolioTransaction(){
                         to="#"
                         color="error"
                         startIcon={<Iconify icon="material-symbols:stop-circle-outline-rounded" />}
+                        onClick={handleClickEnd}
                     >
                         매매 종료
                     </Button>

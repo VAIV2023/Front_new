@@ -8,144 +8,12 @@ import {
 } from "@mui/material";
 import AppWidgetSummary from "../../../components/dashboardApp/AppWidgetSummary";
 import AppWebsiteVisits from "../../../components/dashboardApp/AppWebsiteVisits";
-import { useRecoilValue } from "recoil";
-/* import { currentClubInfoState } from "../../atoms/utilAtom"; */
 import { useQuery } from "react-query";
-/* import { RegisteredClubType, UserType } from "../../types/user"; */
-import { useParams } from "react-router-dom";
-/* import { getAppliedUserByClubID } from "../../utils/fetch/fetchApply"; */
-/* import { AppliedUserType } from "../../types/apply"; */
-import { useEffect, useState } from "react";
-/* import { ToDoType } from "../../types/todo"; */
-import AppConversionRates from "../../../components/dashboardApp/AppConversionRates";
-import StringColumnChart from "../../../components/dashboardApp/StringColumnChart";
 import BooleanColumnChart from "../../../components/dashboardApp/BooleanColumnChart";
-/* import {
-  calculateMonthTodos,
-  calculateTodayTodos,
-  makeChartData,
-  studentIDData,
-  studentIDExample,
-  studentMajorData,
-} from "../../utils/makeChartData";
-import { getClubMembers } from "../../utils/fetch/fetchUser";
-import { getTodosByClubID } from "../../utils/fetch/fetchTodo"; */
+
 
 export default function DashboardApp() {
-  /* const currentClubInfo = useRecoilValue(currentClubInfoState); */
-  const { clubID } = useParams();
-
-  const [stringColumnsData, setStringColumnsData] = useState(
-    new Map<string, string[]>()
-  );
-  const [numberColumnsData, setNumberColumnsData] = useState(
-    new Map<string, string[]>()
-  );
-  const [booleanColumnsData, setBooleanColumnsData] = useState(
-    new Map<string, string[]>()
-  );
-
-  /* const { data: clubMembersData } = useQuery<UserType[]>(
-    "getClubMembers",
-    () => getClubMembers(clubID || ""),
-    {
-      onSuccess: (data) => {
-        // console.log(data);
-      },
-      onError: (error: any) => alert(error.response.data.error),
-      retry: false,
-      retryOnMount: false,
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-      refetchOnWindowFocus: false,
-    }
-  );
- */
- /*  useEffect(() => {
-    const tempStringColumns = new Map();
-    const tempNumberColumns = new Map();
-    const tempBooleanColumns = new Map();
-
-    if (currentClubInfo) {
-      if (clubMembersData) {
-        clubMembersData.forEach((member) => {
-          Object.values(member.registeredClubs).forEach(
-            (club: RegisteredClubType) => {
-              if (club.clubId === currentClubInfo._id) {
-                club.moreColumns.forEach((col) => {
-                  if (col.column.valueType === "string") {
-                    if (tempStringColumns.get(col.column.key)) {
-                      tempStringColumns.set(col.column.key, [
-                        ...tempStringColumns.get(col.column.key),
-                        col.value,
-                      ]);
-                    } else {
-                      tempStringColumns.set(col.column.key, [col.value]);
-                    }
-                  } else if (col.column.valueType === "number") {
-                    if (tempNumberColumns.get(col.column.key)) {
-                      tempNumberColumns.set(col.column.key, [
-                        ...tempNumberColumns.get(col.column.key),
-                        col.value,
-                      ]);
-                    } else {
-                      tempNumberColumns.set(col.column.key, [col.value]);
-                    }
-                  } else if (col.column.valueType === "boolean") {
-                    if (tempBooleanColumns.get(col.column.key)) {
-                      tempBooleanColumns.set(col.column.key, [
-                        ...tempBooleanColumns.get(col.column.key),
-                        col.value,
-                      ]);
-                    } else {
-                      tempBooleanColumns.set(col.column.key, [col.value]);
-                    }
-                  }
-                });
-              }
-            }
-          );
-        });
-        setStringColumnsData(tempStringColumns);
-        setNumberColumnsData(tempNumberColumns);
-        setBooleanColumnsData(tempBooleanColumns);
-      }
-    }
-  }, [currentClubInfo, clubMembersData]); */
-
-  /* const { data: appliedUsersData } = useQuery<AppliedUserType[]>(
-    "getAppliedUserByClubID",
-    () => getAppliedUserByClubID(clubID || ""),
-    {
-      onSuccess: (data) => {
-        // console.log(data);
-      },
-      onError: (error: any) => {
-        alert(error.response.data.error);
-      },
-      retry: false,
-      retryOnMount: false,
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-      refetchOnWindowFocus: false,
-    }
-  );
-
-  const { data: todoData } = useQuery<ToDoType[]>(
-    "getTodosByClubID",
-    () => getTodosByClubID(clubID || ""),
-    {
-      onSuccess: (data) => {
-        // console.log(data);
-      },
-      onError: (error: any) => alert(error.response.data.error),
-      retry: false,
-      retryOnMount: false,
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-      refetchOnWindowFocus: false,
-    }
-  ); */
+  
 
   return (
     <Container maxWidth="xl">
@@ -158,7 +26,7 @@ export default function DashboardApp() {
           <AppWidgetSummary
             title="총 평가"
             total={
-              '$ 18709000'
+              '18709000원'
             } 
             icon={"mdi:account-details"}
           />
@@ -168,7 +36,7 @@ export default function DashboardApp() {
           <AppWidgetSummary
             title="총 손익"
             total={
-              '$ 246400'
+              '246400원'
             } 
             color="info"
             icon={"mdi:arrow-expand"}
@@ -179,7 +47,7 @@ export default function DashboardApp() {
           <AppWidgetSummary
             title="총 매입"
             total={
-              '$ 15037800'
+              '15037800원'
             } 
             color="warning"
             icon={"icon-park-outline:buy"}
@@ -190,7 +58,7 @@ export default function DashboardApp() {
           <AppWidgetSummary
             title="실현 손익"
             total={
-              '$ 197120'
+              '197120원'
             } 
             color="error"
             icon={"mdi:report-bar"}
@@ -215,76 +83,7 @@ export default function DashboardApp() {
           /> 
         </Grid>
 
-        {/* <Grid item xs={12} md={6} lg={12}> */}
-{/*           <AppConversionRates
-            title="학과 분포"
-            subheader="동아리원들의 학과 분포 그래프"
-             chartData={
-              clubMembersData
-                ? studentMajorData(clubMembersData)
-                : [
-                    { label: "Italy", value: 400 },
-                    { label: "Japan", value: 430 },
-                    { label: "China", value: 448 },
-                    { label: "Canada", value: 470 },
-                    { label: "France", value: 540 },
-                    { label: "Germany", value: 580 },
-                    { label: "South Korea", value: 690 },
-                    { label: "Netherlands", value: 1100 },
-                    { label: "United States", value: 1200 },
-                    { label: "United Kingdom", value: 1380 },
-                  ]
-            } 
-          /> */}
-        {/* </Grid> */}
-
-{/*          {stringColumnsData.size > 0
-          ? Array.from(stringColumnsData).map(([key, value]) => {
-              const obj = makeChartData(key, value);
-
-              return (
-                <Grid key={key} item xs={12} sm={6} md={6}>
-                  <Card>
-                    <CardHeader title={key} />
-                    <Box sx={{ p: 3, pb: 1 }} dir="ltr">
-                      <StringColumnChart
-                        name={key}
-                        data={Object.values(obj)}
-                        categories={Object.keys(obj)}
-                      />
-                    </Box>
-                  </Card>
-                </Grid>
-              );
-            })
-          : null}
-
-        {numberColumnsData.size > 0
-          ? Array.from(numberColumnsData).map(([key, value]) => {
-              const obj = makeChartData(key, value);
-
-              return (
-                <Grid key={key} item xs={12} sm={6} md={6}>
-                  <AppWebsiteVisits
-                    title={key}
-                    subheader=""
-                    chartLabels={Object.keys(obj)}
-                    chartData={[
-                      {
-                        name: key,
-                        type: "area",
-                        fill: "gradient",
-                        data: Object.values(obj),
-                      },
-                    ]}
-                  />
-                </Grid>
-              );
-            })
-          : null} */}
-
-    
-
+      
              
         <Grid key={"보유주식 현황"} item xs={12} xl={6}>
           <Card>
