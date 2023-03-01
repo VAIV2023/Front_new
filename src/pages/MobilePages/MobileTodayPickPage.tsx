@@ -54,7 +54,9 @@ const MobileTextBox = styled.div<IText>`
 
 export default function MobileTodayPickPage(){
     const [isKospi, setIsKospi] = useState<boolean>(true);
+    const [isNew, setIsNew] = useState<boolean>(true);
     const [value, setValue] = useState(0);
+    const [modelValue, setModelValue] = useState(0);
     const [nowTicker, setNowTicker]= useRecoilState(NowTicker);
 
     const {data:today} = useQuery<TodaysPickType>(
@@ -76,13 +78,21 @@ export default function MobileTodayPickPage(){
      // Create Array
      const kospiTickerList : string[] = [];
      const kosdaqTickerList : string[] = [];
+     const kospiTickerList_new : string[] = [];
+     const kosdaqTickerList_new : string[] = [];
+
      today?.KOSDAQ.forEach(element => {
-         kosdaqTickerList.push(element.ticker);
+        kosdaqTickerList.push(element.ticker);
      });
- 
+     today?.KOSDAQ_new.forEach(element => {
+        kosdaqTickerList_new.push(element.ticker);
+    });
      today?.KOSPI.forEach(element => {
-         kospiTickerList.push(element.ticker);
+        kospiTickerList.push(element.ticker);
      });
+     today?.KOSPI_new.forEach(element => {
+        kospiTickerList_new.push(element.ticker);
+    });
 
     
 
@@ -94,6 +104,15 @@ export default function MobileTodayPickPage(){
         setIsKospi(false);
       }
     };
+
+    const handleModelChange = (event: React.SyntheticEvent, newModelValue: number) => {
+        setModelValue(newModelValue);
+        if(newModelValue===0){
+          setIsNew(true);
+        }else{
+          setIsNew(false);
+        }
+      };
 
 
 
@@ -111,6 +130,10 @@ export default function MobileTodayPickPage(){
                 </Typography>
             </Stack>
             <Box sx={{ width: '100%', bgcolor: 'background.paper' , pb:2}}>
+                <Tabs value={modelValue} onChange={handleModelChange} sx={{pl:2,pb:2}}>
+                    <Tab label="Short_Swing" sx={{ fontSize:5, width:5}}/>
+                    <Tab label="Long_Swing" sx={{ fontSize:5, width:5}}/>
+                </Tabs>
                 <Tabs value={value} onChange={handleChange} centered sx={{pb:2}}>
                     <Tab label="KOSPI" />
                     <Tab label="KOSDAQ" />
@@ -121,12 +144,21 @@ export default function MobileTodayPickPage(){
                     <MobileTextBox Width = '20%' Height='6vh' FontSize = "0.9rem" FontWeight = "bold" FontColor="#000069"  Justify='right' Border = {true}>전일대비</MobileTextBox>
                     <MobileTextBox Width = '15%' Height='6vh' FontSize = "0.9rem" FontWeight = "bold" FontColor="#000069"  Justify='right' Border = {true}>등락률</MobileTextBox>
                 </MobileTextBoxWrapper>
+                
                 {isKospi?(
+                    isNew? 
                     kospiTickerList.map((element:string) =>(
+                        <MobileTodaysPickRow key={element} ticker ={element}></MobileTodaysPickRow>
+                    )) : 
+                    kospiTickerList_new.map((element:string) =>(
                         <MobileTodaysPickRow key={element} ticker ={element}></MobileTodaysPickRow>
                     ))
                 ):(
+                    isNew?
                     kosdaqTickerList.map((element:string) =>(
+                        <MobileTodaysPickRow key={element} ticker ={element}></MobileTodaysPickRow>
+                    )) :
+                    kosdaqTickerList_new.map((element:string) =>(
                         <MobileTodaysPickRow key={element} ticker ={element}></MobileTodaysPickRow>
                     ))
                 )}            

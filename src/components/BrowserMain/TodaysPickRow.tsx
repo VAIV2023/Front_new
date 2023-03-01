@@ -47,12 +47,13 @@ export default function ToadaysPickRow({ticker}:tickerType){
     const [direction, setDirection] = useState<boolean>();
     const [resString, setResString] = useState<string | undefined>("");
     const [fetch, Setfetch] = useState<boolean>(false);
+
     const { data ,isLoading} = useQuery<KrxStockType>(
         `${ticker}`,
         () => fetchKrx(ticker),
         {
           onSuccess: (data) => {
-            //console.log(data);
+            console.log(data);
             Setfetch(true);
           },
           onError: (error: any) => {
